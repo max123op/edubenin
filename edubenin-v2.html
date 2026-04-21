@@ -1,0 +1,1330 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>EduBénin — Apprendre, Grandir, Réussir</title>
+<meta name="description" content="Plateforme éducative pour les élèves béninois du collège au lycée. Cours, exercices, examens BEPC et BAC.">
+<meta property="og:title" content="EduBénin — La plateforme des élèves béninois">
+<meta property="og:description" content="Cours, exercices, BEPC & BAC pour les élèves de la 6ème à la Terminale">
+<meta property="og:type" content="website">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=DM+Sans:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+:root {
+  --green:#008751;--green-dark:#005c37;--green-light:#00c472;--green-bg:#e6f5ee;
+  --gold:#F5C518;--gold-dark:#c49a00;--gold-bg:#fdf8e1;
+  --terra:#c0562b;--terra-light:#e8845c;--terra-bg:#fdeee7;
+  --indigo:#4338CA;--indigo-bg:#eef2ff;
+  --accent:#00E5A0;--accent-dim:#00c48820;
+  --white:#ffffff;--gray-50:#f6f7f9;--gray-100:#eef0f4;--gray-200:#dde1ea;
+  --gray-400:#8f96a8;--gray-600:#4f5669;--gray-800:#1e2230;--text:#111827;
+  --radius:14px;--radius-sm:8px;--shadow:0 2px 12px rgba(0,0,0,0.07);--shadow-lg:0 8px 32px rgba(0,0,0,0.11);
+}
+[data-theme="dark"]{
+  --white:#13161f;--gray-50:#1a1e2a;--gray-100:#222636;--gray-200:#2e3347;
+  --gray-400:#6b7285;--gray-600:#a8b0c4;--gray-800:#e8ecf5;--text:#f0f2f8;
+  --green-bg:#0a2419;--gold-bg:#221e00;--terra-bg:#260f05;--indigo-bg:#0f1035;
+  --accent:#00E5A0;
+}
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth;-webkit-font-smoothing:antialiased}
+body{font-family:'DM Sans',sans-serif;color:var(--text);background:var(--gray-50);line-height:1.65;transition:background .3s,color .3s}
+a{color:inherit;text-decoration:none}
+button{cursor:pointer;font-family:inherit}
+::-webkit-scrollbar{width:5px}
+::-webkit-scrollbar-thumb{background:var(--green);border-radius:3px}
+
+/* HEADER */
+.header{position:sticky;top:0;z-index:100;background:var(--white);border-bottom:1px solid var(--gray-200)}
+.header-inner{max-width:1200px;margin:0 auto;height:64px;display:flex;align-items:center;gap:1.5rem;padding:0 1.5rem}
+.logo{display:flex;align-items:center;gap:10px;font-family:'Plus Jakarta Sans',sans-serif;font-weight:800;font-size:1.35rem;color:var(--green);flex-shrink:0}
+.logo-box{width:36px;height:36px;background:var(--green);border-radius:10px;display:flex;align-items:center;justify-content:center;color:white;font-size:18px;box-shadow:0 0 0 3px var(--accent-dim)}
+.logo span{color:var(--gold-dark)}
+.nav{display:flex;align-items:center;gap:2px;flex:1;justify-content:center}
+.nav a{padding:.4rem .85rem;border-radius:8px;font-size:.875rem;font-weight:600;color:var(--gray-600);transition:all .2s;white-space:nowrap;font-family:'DM Sans',sans-serif;letter-spacing:.01em}
+.nav a:hover,.nav a.active{background:var(--green-bg);color:var(--green)}
+.hactions{display:flex;align-items:center;gap:.75rem;flex-shrink:0}
+.btn{display:inline-flex;align-items:center;gap:6px;padding:.5rem 1.1rem;border-radius:10px;font-size:.875rem;font-weight:700;border:none;transition:all .2s;white-space:nowrap;cursor:pointer;font-family:'DM Sans',sans-serif;letter-spacing:.02em}
+.btn-outline{background:transparent;border:1.5px solid var(--green);color:var(--green)}
+.btn-outline:hover{background:var(--green-bg)}
+.btn-primary{background:var(--green);color:white}
+.btn-primary:hover{background:var(--green-dark);transform:translateY(-1px)}
+.btn-gold{background:var(--gold);color:var(--gray-800)}
+.btn-gold:hover{background:var(--gold-dark);transform:translateY(-1px)}
+.btn-sm{padding:.35rem .8rem;font-size:.8rem}
+.btn-w{width:100%;justify-content:center;padding:.75rem}
+.icon-btn{width:36px;height:36px;border-radius:8px;border:1.5px solid var(--gray-200);background:transparent;display:flex;align-items:center;justify-content:center;font-size:16px;color:var(--gray-600);transition:all .2s}
+.icon-btn:hover{background:var(--gray-100)}
+.burger{display:none;flex-direction:column;gap:5px;padding:8px;border:none;background:transparent}
+.burger span{width:22px;height:2px;background:var(--text);border-radius:2px;transition:all .3s}
+.mob-menu{display:none;flex-direction:column;gap:3px;padding:.75rem 1.5rem;border-top:1px solid var(--gray-200)}
+.mob-menu.open{display:flex}
+.mob-menu a{padding:.65rem .9rem;border-radius:8px;font-size:.9rem;font-weight:600;color:var(--gray-600);transition:all .2s}
+.mob-menu a:hover{background:var(--green-bg);color:var(--green)}
+
+/* NOTIF BAR */
+.notif{background:var(--gold);padding:.5rem 1.5rem;display:flex;align-items:center;justify-content:center;gap:.75rem;font-size:.85rem;font-weight:600;color:var(--gray-800)}
+.notif button{background:var(--gray-800);color:var(--gold);border:none;padding:.25rem .75rem;border-radius:6px;font-size:.78rem;font-weight:700;cursor:pointer}
+.notif-x{background:none!important;color:var(--gray-800)!important;padding:0!important;font-size:20px!important;margin-left:auto;line-height:1}
+
+/* HERO */
+.hero{background:var(--white);padding:4rem 1.5rem 3rem;position:relative;overflow:hidden}
+.hero-kente{position:absolute;top:0;right:0;width:45%;height:100%;opacity:.04;background-image:repeating-linear-gradient(45deg,var(--green) 0,var(--green) 8px,transparent 8px,transparent 16px),repeating-linear-gradient(-45deg,var(--gold) 0,var(--gold) 8px,transparent 8px,transparent 16px);pointer-events:none}
+.hero-inner{max-width:1200px;margin:0 auto;display:grid;grid-template-columns:1fr 1fr;gap:3rem;align-items:center;position:relative;z-index:1}
+.hero-badge{display:inline-flex;align-items:center;gap:6px;background:var(--green-bg);color:var(--green);border:1px solid #00875130;padding:.3rem .8rem;border-radius:50px;font-size:.78rem;font-weight:700;margin-bottom:1.25rem;animation:fadeUp .6s ease;font-family:'DM Sans',sans-serif;letter-spacing:.03em}
+.hero-title{font-family:'Plus Jakarta Sans',sans-serif;font-size:clamp(1.9rem,4.5vw,3rem);font-weight:800;line-height:1.12;margin-bottom:1.25rem;animation:fadeUp .6s .1s ease both;letter-spacing:-.02em}
+.hero-title .g{color:var(--green)}
+.hero-title .o{color:var(--gold-dark)}
+.hero-desc{color:var(--gray-600);font-size:1rem;margin-bottom:2rem;animation:fadeUp .6s .2s ease both;font-family:'DM Sans',sans-serif;line-height:1.7}
+.hero-btns{display:flex;gap:1rem;flex-wrap:wrap;margin-bottom:2rem;animation:fadeUp .6s .3s ease both}
+.hero-stats{display:flex;gap:2rem;animation:fadeUp .6s .4s ease both}
+.hstat strong{font-family:'Plus Jakarta Sans',sans-serif;font-size:1.5rem;font-weight:800;color:var(--green);display:block;letter-spacing:-.02em}
+.hstat span{font-size:.78rem;color:var(--gray-600);font-family:'DM Sans',sans-serif}
+
+/* HERO CARDS */
+.hero-cards{display:flex;flex-direction:column;gap:1rem;animation:fadeRight .7s .2s ease both}
+.hcard{background:var(--white);border:1.5px solid var(--gray-200);border-radius:var(--radius);padding:1.1rem;box-shadow:var(--shadow);transition:transform .2s}
+.hcard:hover{transform:translateY(-3px)}
+.hcard-row{display:flex;align-items:center;gap:.75rem}
+.subj-icon{width:42px;height:42px;border-radius:12px;display:flex;align-items:center;justify-content:center;font-size:20px;flex-shrink:0}
+.hcard-title{font-weight:700;font-size:.88rem}
+.hcard-sub{font-size:.75rem;color:var(--gray-400)}
+.xp-pill{background:var(--gold);color:var(--gray-800);font-size:.7rem;font-weight:700;padding:2px 8px;border-radius:50px;margin-left:auto;flex-shrink:0}
+.prog-bar{height:5px;background:var(--gray-100);border-radius:3px;margin-top:.5rem;overflow:hidden}
+.prog-fill{height:100%;background:var(--green);border-radius:3px;animation:progIn 1s .8s ease both;transform:scaleX(0);transform-origin:left}
+.hcard-grid{display:grid;grid-template-columns:1fr 1fr;gap:.6rem;padding:.9rem}
+.hcard-stat{text-align:center}
+.hcard-stat .ico{font-size:1.6rem;display:block;margin-bottom:2px}
+.hcard-stat .lbl{font-size:.7rem;font-weight:700}
+
+/* SEARCH */
+.search-sec{background:var(--green);padding:2rem 1.5rem}
+.search-inner{max-width:680px;margin:0 auto;text-align:center}
+.search-title{font-family:'Plus Jakarta Sans',sans-serif;color:white;font-size:1.2rem;font-weight:700;margin-bottom:.85rem}
+.searchbox{display:flex;gap:.5rem;background:white;border-radius:14px;padding:.4rem .4rem .4rem 1rem;box-shadow:0 4px 20px rgba(0,0,0,.15)}
+.searchbox input{flex:1;border:none;outline:none;font-family:'DM Sans',sans-serif;font-size:1rem;background:transparent;color:var(--text)}
+.searchbox input::placeholder{color:var(--gray-400)}
+.search-btn{background:var(--green);color:white;border:none;padding:.6rem 1.2rem;border-radius:10px;font-family:'DM Sans',sans-serif;font-weight:700;font-size:.9rem;cursor:pointer;transition:all .2s;white-space:nowrap}
+.search-btn:hover{background:var(--green-dark)}
+.search-tags{display:flex;gap:.4rem;flex-wrap:wrap;justify-content:center;margin-top:.65rem}
+.stag{background:rgba(255,255,255,.2);color:white;border:1px solid rgba(255,255,255,.3);padding:.18rem .65rem;border-radius:50px;font-size:.75rem;cursor:pointer;transition:all .2s}
+.stag:hover{background:rgba(255,255,255,.35)}
+
+/* SECTION */
+.sec{padding:3.5rem 1.5rem}
+.sec-alt{background:var(--white)}
+.container{max-width:1200px;margin:0 auto}
+.sec-hd{margin-bottom:2rem}
+.sec-hd.flex{display:flex;justify-content:space-between;align-items:flex-end;flex-wrap:wrap;gap:.75rem}
+.sec-label{font-size:.72rem;font-weight:700;color:var(--accent);text-transform:uppercase;letter-spacing:.12em;margin-bottom:.3rem;font-family:'DM Sans',sans-serif}
+.sec-title{font-family:'Plus Jakarta Sans',sans-serif;font-size:clamp(1.3rem,3vw,1.9rem);font-weight:800;margin-bottom:.35rem;letter-spacing:-.02em;line-height:1.2}
+.sec-desc{color:var(--gray-600);font-size:.9rem;font-family:'DM Sans',sans-serif}
+
+/* LEVELS GRID */
+.levels-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(170px,1fr));gap:.85rem}
+.level-card{background:var(--white);border:1.5px solid var(--gray-200);border-radius:var(--radius);padding:.9rem 1.1rem;cursor:pointer;transition:all .25s;display:flex;align-items:center;gap:.75rem}
+.level-card:hover{border-color:var(--green);background:var(--green-bg);transform:translateY(-2px)}
+.level-dot{width:40px;height:40px;border-radius:10px;display:flex;align-items:center;justify-content:center;font-weight:800;font-size:.82rem;font-family:'Plus Jakarta Sans',sans-serif;flex-shrink:0}
+.level-info strong{font-size:.875rem;font-weight:700;display:block;font-family:'DM Sans',sans-serif}
+.level-info span{font-size:.73rem;color:var(--gray-400);font-family:'DM Sans',sans-serif}
+
+/* SUBJECTS */
+.subjects-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(130px,1fr));gap:.85rem}
+.subj-card{background:var(--white);border:1.5px solid var(--gray-200);border-radius:var(--radius);padding:1.1rem;text-align:center;cursor:pointer;transition:all .25s;position:relative;overflow:hidden}
+.subj-card::after{content:'';position:absolute;bottom:0;left:0;right:0;height:3px;background:var(--sc,var(--green));transform:scaleX(0);transition:transform .25s}
+.subj-card:hover{border-color:var(--sc,var(--green));transform:translateY(-4px);box-shadow:var(--shadow)}
+.subj-card:hover::after{transform:scaleX(1)}
+.subj-emoji{font-size:1.9rem;display:block;margin-bottom:.4rem}
+.subj-name{font-weight:700;font-size:.82rem;margin-bottom:.15rem}
+.subj-count{font-size:.72rem;color:var(--gray-400)}
+
+/* COURSES */
+.courses-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(275px,1fr));gap:1.1rem}
+.course-card{background:var(--white);border:1.5px solid var(--gray-200);border-radius:var(--radius);overflow:hidden;cursor:pointer;transition:all .25s}
+.course-card:hover{transform:translateY(-4px);box-shadow:var(--shadow-lg);border-color:var(--green)}
+.course-thumb{height:130px;display:flex;align-items:center;justify-content:center;font-size:3.2rem;position:relative;overflow:hidden}
+.ct-pattern{position:absolute;inset:0;opacity:.12;background-image:repeating-linear-gradient(45deg,currentColor 0,currentColor 4px,transparent 4px,transparent 12px)}
+.course-body{padding:1rem}
+.tags{display:flex;gap:.35rem;flex-wrap:wrap;margin-bottom:.5rem}
+.tag{padding:.15rem .55rem;border-radius:50px;font-size:.7rem;font-weight:700}
+.tg{background:var(--green-bg);color:var(--green)}
+.to{background:var(--gold-bg);color:#7a5c00}
+.tt{background:var(--terra-bg);color:var(--terra)}
+.ti{background:var(--indigo-bg);color:var(--indigo)}
+.tgray{background:var(--gray-100);color:var(--gray-600)}
+.course-title{font-weight:700;font-size:.92rem;margin-bottom:.3rem;line-height:1.3;font-family:'DM Sans',sans-serif;letter-spacing:-.01em}
+.course-meta{font-size:.75rem;color:var(--gray-400);display:flex;gap:.65rem;flex-wrap:wrap;font-family:'DM Sans',sans-serif}
+.course-footer{padding:.7rem 1rem;border-top:1px solid var(--gray-100);display:flex;align-items:center;justify-content:space-between}
+.teacher-row{display:flex;align-items:center;gap:.45rem;font-size:.78rem}
+.avatar{width:26px;height:26px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:.65rem;font-weight:700;color:white;flex-shrink:0}
+
+/* PARCOURS */
+.parcours-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(240px,1fr));gap:1rem}
+.parcours-card{background:var(--white);border:1.5px solid var(--gray-200);border-radius:var(--radius);padding:1.25rem;cursor:pointer;transition:all .25s;position:relative;overflow:hidden}
+.parcours-card::before{content:'';position:absolute;top:0;left:0;right:0;height:4px;background:var(--pc,var(--green))}
+.parcours-card:hover{transform:translateY(-3px);box-shadow:var(--shadow)}
+.parcours-icon{font-size:2rem;margin-bottom:.65rem;display:block}
+.parcours-title{font-family:'Plus Jakarta Sans',sans-serif;font-weight:700;font-size:1rem;margin-bottom:.3rem;letter-spacing:-.01em}
+.parcours-desc{font-size:.82rem;color:var(--gray-600);margin-bottom:.85rem;font-family:'DM Sans',sans-serif}
+.parcours-meta{display:flex;gap:.6rem;font-size:.75rem;color:var(--gray-400)}
+
+/* EXERCISES */
+.exercises-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(290px,1fr));gap:1.1rem}
+.ex-card{background:var(--white);border:1.5px solid var(--gray-200);border-radius:var(--radius);padding:1.1rem;cursor:pointer;transition:all .25s}
+.ex-card:hover{border-color:var(--terra);transform:translateY(-2px);box-shadow:var(--shadow)}
+.ex-header{display:flex;align-items:flex-start;justify-content:space-between;margin-bottom:.6rem;gap:.5rem}
+.ex-title{font-weight:700;font-size:.9rem;line-height:1.3}
+.diff{padding:.15rem .55rem;border-radius:50px;font-size:.68rem;font-weight:700;white-space:nowrap;flex-shrink:0}
+.df-easy{background:#edfaf3;color:#1a7a4a}
+.df-med{background:var(--gold-bg);color:#7a5c00}
+.df-hard{background:var(--terra-bg);color:var(--terra)}
+.ex-prev{font-size:.83rem;color:var(--gray-600);margin-bottom:.9rem;line-height:1.5}
+.ex-footer{display:flex;align-items:center;justify-content:space-between}
+.ex-info{font-size:.73rem;color:var(--gray-400)}
+
+/* EXAMS */
+.exams-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(240px,1fr));gap:.9rem}
+.exam-card{background:var(--white);border:1.5px solid var(--gray-200);border-radius:var(--radius);padding:1.1rem;transition:all .25s;cursor:pointer}
+.exam-card:hover{border-color:var(--gold-dark);transform:translateY(-2px);box-shadow:var(--shadow)}
+.exam-type{display:inline-block;padding:.22rem .65rem;border-radius:6px;font-size:.75rem;font-weight:800;font-family:'Plus Jakarta Sans',sans-serif;margin-bottom:.65rem}
+.et-bepc{background:var(--green-bg);color:var(--green)}
+.et-bac{background:var(--gold-bg);color:#7a5c00}
+.exam-title{font-weight:700;font-size:.9rem;margin-bottom:.25rem}
+.exam-meta{font-size:.76rem;color:var(--gray-400);margin-bottom:.7rem}
+
+/* VIDEOS */
+.videos-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(255px,1fr));gap:1.1rem}
+.vid-card{background:var(--white);border:1.5px solid var(--gray-200);border-radius:var(--radius);overflow:hidden;cursor:pointer;transition:all .25s}
+.vid-card:hover{transform:translateY(-4px);box-shadow:var(--shadow-lg)}
+.vid-thumb{height:145px;display:flex;align-items:center;justify-content:center;position:relative;overflow:hidden}
+.vid-bg{position:absolute;inset:0;font-size:5rem;display:flex;align-items:center;justify-content:center;opacity:.1}
+.play-btn{width:48px;height:48px;background:rgba(255,255,255,.92);border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:17px;color:var(--green);z-index:1;transition:all .2s}
+.vid-card:hover .play-btn{background:var(--green);color:white;transform:scale(1.1)}
+.vid-dur{position:absolute;bottom:7px;right:7px;background:rgba(0,0,0,.72);color:white;padding:2px 6px;border-radius:4px;font-size:.7rem;font-weight:700}
+.vid-body{padding:.9rem}
+.vid-title{font-weight:700;font-size:.88rem;margin-bottom:.25rem}
+.vid-meta{font-size:.73rem;color:var(--gray-400)}
+
+/* METHODE */
+.methode-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(220px,1fr));gap:1rem}
+.methode-card{background:var(--white);border:1.5px solid var(--gray-200);border-radius:var(--radius);padding:1.25rem;cursor:pointer;transition:all .25s}
+.methode-card:hover{border-color:var(--indigo);transform:translateY(-2px);box-shadow:var(--shadow)}
+.methode-icon{font-size:1.8rem;margin-bottom:.6rem;display:block}
+.methode-title{font-weight:700;font-size:.9rem;margin-bottom:.25rem}
+.methode-desc{font-size:.8rem;color:var(--gray-600)}
+
+/* SIMULATEUR */
+.sim-widget{background:var(--white);border:1.5px solid var(--gray-200);border-radius:var(--radius);overflow:hidden;max-width:680px;margin:0 auto}
+.sim-header{background:var(--green);padding:1.1rem 1.25rem;color:white;display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:.5rem}
+.sim-title{font-family:'Plus Jakarta Sans',sans-serif;font-weight:800;font-size:1rem;letter-spacing:-.01em}
+.sim-timer{background:rgba(255,255,255,.2);padding:.3rem .75rem;border-radius:8px;font-family:'Plus Jakarta Sans',sans-serif;font-weight:700;font-size:1.1rem;font-variant-numeric:tabular-nums}
+.sim-body{padding:1.4rem}
+.sim-q{font-weight:700;font-size:.97rem;margin-bottom:1.1rem;line-height:1.5}
+.sim-opts{display:flex;flex-direction:column;gap:.5rem}
+.sim-opt{display:flex;align-items:center;gap:.7rem;padding:.75rem .9rem;border:1.5px solid var(--gray-200);border-radius:10px;background:var(--white);font-family:'DM Sans',sans-serif;font-size:.88rem;cursor:pointer;transition:all .2s;text-align:left;color:var(--text);width:100%}
+.sim-opt:hover:not(:disabled){border-color:var(--green);background:var(--green-bg)}
+.sim-opt.correct{border-color:var(--green);background:var(--green-bg)}
+.sim-opt.wrong{border-color:var(--terra);background:var(--terra-bg)}
+.opt-letter{width:26px;height:26px;border-radius:50%;background:var(--gray-100);display:flex;align-items:center;justify-content:center;font-weight:800;font-size:.75rem;flex-shrink:0;transition:all .2s}
+.sim-opt.correct .opt-letter{background:var(--green);color:white}
+.sim-opt.wrong .opt-letter{background:var(--terra);color:white}
+.sim-exp{margin:1rem 1.4rem 1.4rem;padding:.9rem;border-radius:10px;font-size:.85rem;line-height:1.6;display:none}
+.sim-exp.show{display:block;animation:fadeUp .3s ease}
+.exp-ok{background:var(--green-bg);border-left:3px solid var(--green);color:var(--green-dark)}
+.exp-no{background:var(--terra-bg);border-left:3px solid var(--terra);color:var(--terra)}
+.sim-footer{padding:.9rem 1.4rem;border-top:1px solid var(--gray-100);display:flex;align-items:center;justify-content:space-between}
+.sim-prog-txt{font-size:.78rem;color:var(--gray-400)}
+
+/* CLASSEMENT */
+.classement-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(280px,1fr));gap:1rem}
+.class-card{background:var(--white);border:1.5px solid var(--gray-200);border-radius:var(--radius);padding:1.1rem}
+.class-title{font-family:'Plus Jakarta Sans',sans-serif;font-weight:700;font-size:.92rem;margin-bottom:.9rem;display:flex;align-items:center;gap:.5rem}
+.class-row{display:flex;align-items:center;gap:.65rem;padding:.45rem 0;border-bottom:1px solid var(--gray-100)}
+.class-row:last-child{border-bottom:none}
+.rank{width:24px;height:24px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:.72rem;font-weight:800;flex-shrink:0}
+.r1{background:var(--gold);color:var(--gray-800)}
+.r2{background:var(--gray-200);color:var(--gray-800)}
+.r3{background:var(--terra-bg);color:var(--terra)}
+.rn{background:var(--gray-100);color:var(--gray-600)}
+.class-name{flex:1;font-size:.83rem;font-weight:600}
+.class-xp{font-size:.75rem;color:var(--green);font-weight:700}
+
+/* DASHBOARD */
+.dash-grid{display:grid;grid-template-columns:260px 1fr;gap:1.25rem;max-width:1100px;margin:0 auto}
+.sidebar{background:var(--white);border:1.5px solid var(--gray-200);border-radius:var(--radius);padding:1.1rem;height:fit-content}
+.user-prof{text-align:center;margin-bottom:1.1rem}
+.u-avatar{width:68px;height:68px;border-radius:50%;background:var(--green);display:flex;align-items:center;justify-content:center;font-family:'Plus Jakarta Sans',sans-serif;font-size:1.4rem;font-weight:800;color:white;margin:0 auto .65rem;border:3px solid var(--gold)}
+.u-name{font-weight:700;font-size:.97rem}
+.u-school{font-size:.77rem;color:var(--gray-400)}
+.xp-box{background:var(--green-bg);border-radius:10px;padding:.65rem;text-align:center;margin-top:.65rem}
+.xp-val{font-family:'Plus Jakarta Sans',sans-serif;font-size:1.35rem;font-weight:800;color:var(--green);letter-spacing:-.02em}
+.xp-label{font-size:.73rem;color:var(--gray-600);font-family:'DM Sans',sans-serif}
+.sb-menu{margin-top:1.1rem;display:flex;flex-direction:column;gap:2px}
+.sb-item{display:flex;align-items:center;gap:.65rem;padding:.55rem .7rem;border-radius:9px;font-size:.85rem;font-weight:600;cursor:pointer;transition:all .2s;color:var(--gray-600)}
+.sb-item:hover,.sb-item.active{background:var(--green-bg);color:var(--green)}
+.sb-item .ico{font-size:15px}
+.dash-main{display:flex;flex-direction:column;gap:1.1rem}
+.stats-row{display:grid;grid-template-columns:repeat(4,1fr);gap:.9rem}
+.stat-card{background:var(--white);border:1.5px solid var(--gray-200);border-radius:var(--radius);padding:1rem;text-align:center}
+.stat-ico{font-size:1.4rem;margin-bottom:.3rem}
+.stat-val{font-family:'Plus Jakarta Sans',sans-serif;font-size:1.5rem;font-weight:800;color:var(--green);letter-spacing:-.02em}
+.stat-lbl{font-size:.72rem;color:var(--gray-400);font-family:'DM Sans',sans-serif}
+.dash-card{background:var(--white);border:1.5px solid var(--gray-200);border-radius:var(--radius);padding:1.1rem}
+.dash-card-title{font-family:'Plus Jakarta Sans',sans-serif;font-weight:700;font-size:.95rem;margin-bottom:.9rem;display:flex;align-items:center;justify-content:space-between;letter-spacing:-.01em}
+.rec-row{display:flex;align-items:center;gap:.65rem;padding:.5rem 0;border-bottom:1px solid var(--gray-100)}
+.rec-row:last-child{border-bottom:none}
+.rec-icon{width:38px;height:38px;border-radius:9px;display:flex;align-items:center;justify-content:center;font-size:17px;flex-shrink:0}
+.rec-name{font-size:.85rem;font-weight:700}
+.rec-sub{font-size:.73rem;color:var(--gray-400)}
+.badges-grid{display:flex;gap:.65rem;flex-wrap:wrap}
+.badge-item{display:flex;flex-direction:column;align-items:center;gap:.25rem;font-size:.7rem;color:var(--gray-600);width:56px;text-align:center}
+.badge-ico{width:46px;height:46px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:20px}
+.b-earned{border:2px solid var(--gold);background:var(--gold-bg)}
+.b-locked{background:var(--gray-100);filter:grayscale(1) opacity(.45)}
+
+/* TESTI */
+.testi-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(250px,1fr));gap:1.1rem}
+.testi-card{background:var(--white);border:1.5px solid var(--gray-200);border-radius:var(--radius);padding:1.1rem}
+.stars{color:var(--gold);font-size:13px;margin-bottom:.65rem}
+.testi-txt{font-size:.85rem;color:var(--gray-600);line-height:1.6;margin-bottom:.9rem;font-style:italic}
+.testi-auth{display:flex;align-items:center;gap:.55rem}
+.testi-name{font-weight:700;font-size:.83rem}
+.testi-school{font-size:.73rem;color:var(--gray-400)}
+
+/* PRICING */
+.pricing-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(255px,1fr));gap:1.1rem;max-width:880px;margin:0 auto}
+.price-card{background:var(--white);border:1.5px solid var(--gray-200);border-radius:var(--radius);padding:1.75rem;transition:all .25s;position:relative}
+.price-card.featured{border-color:var(--green);box-shadow:0 4px 24px rgba(0,135,81,.15);transform:scale(1.02)}
+.price-badge{position:absolute;top:-11px;left:50%;transform:translateX(-50%);background:var(--green);color:white;padding:.22rem .85rem;border-radius:50px;font-size:.72rem;font-weight:700;white-space:nowrap}
+.price-name{font-family:'Plus Jakarta Sans',sans-serif;font-weight:800;font-size:1.05rem;margin-bottom:.45rem;letter-spacing:-.01em}
+.price-val{display:flex;align-items:baseline;gap:4px;margin-bottom:.25rem}
+.price-val strong{font-family:'Plus Jakarta Sans',sans-serif;font-size:2.1rem;font-weight:800;color:var(--green);letter-spacing:-.03em}
+.price-val span{font-size:.82rem;color:var(--gray-400);font-family:'DM Sans',sans-serif}
+.price-sub{font-size:.78rem;color:var(--gray-400);margin-bottom:1.25rem}
+.price-feats{list-style:none;display:flex;flex-direction:column;gap:.5rem;margin-bottom:1.25rem}
+.price-feats li{display:flex;align-items:center;gap:.45rem;font-size:.85rem}
+.ck{color:var(--green);font-size:13px}
+.cx{color:var(--gray-400);font-size:13px}
+.pay-methods{display:flex;gap:.65rem;flex-wrap:wrap;justify-content:center;margin-top:1.25rem}
+.pay-badge{background:var(--white);border:1.5px solid var(--gray-200);border-radius:9px;padding:.45rem .9rem;font-size:.8rem;font-weight:700;display:flex;align-items:center;gap:5px;color:var(--gray-600)}
+.pay-dot{width:7px;height:7px;border-radius:50%}
+
+/* TABS */
+.tabs{display:flex;gap:2px;border-bottom:1.5px solid var(--gray-200);margin-bottom:1.4rem;overflow-x:auto}
+.tab{padding:.55rem 1rem;border-radius:8px 8px 0 0;font-size:.85rem;font-weight:600;cursor:pointer;color:var(--gray-600);border:none;background:none;transition:all .2s;white-space:nowrap}
+.tab:hover{color:var(--green)}
+.tab.active{color:var(--green);border-bottom:2.5px solid var(--green);background:var(--green-bg)}
+.filter-row{display:flex;gap:.4rem;flex-wrap:wrap;margin-bottom:1.25rem;align-items:center}
+.fbtn{padding:.3rem .8rem;border-radius:50px;font-size:.78rem;font-weight:600;border:1.5px solid var(--gray-200);background:var(--white);color:var(--gray-600);cursor:pointer;transition:all .2s}
+.fbtn.active,.fbtn:hover{background:var(--green);color:white;border-color:var(--green)}
+.tab-content{display:none}
+.tab-content.active{display:block}
+
+/* PREMIUM BANNER */
+.prem-banner{background:var(--green);padding:2.5rem 1.5rem;text-align:center;color:white}
+.prem-banner h2{font-family:'Plus Jakarta Sans',sans-serif;font-size:clamp(1.3rem,3vw,1.9rem);font-weight:800;margin-bottom:.45rem}
+.prem-banner p{opacity:.85;margin-bottom:1.4rem}
+.prem-btns{display:flex;gap:.9rem;justify-content:center;flex-wrap:wrap}
+
+/* CHATBOT */
+.chat-fab{position:fixed;bottom:1.5rem;right:1.5rem;z-index:200}
+.chat-btn{width:54px;height:54px;border-radius:50%;background:var(--green);border:none;color:white;font-size:22px;display:flex;align-items:center;justify-content:center;box-shadow:0 4px 16px rgba(0,135,81,.45);cursor:pointer;transition:all .3s;animation:pulse 2s infinite}
+.chat-btn:hover{background:var(--green-dark);transform:scale(1.08)}
+.chat-window{position:fixed;bottom:78px;right:1.5rem;width:355px;max-height:510px;background:var(--white);border:1.5px solid var(--gray-200);border-radius:18px;box-shadow:var(--shadow-lg);display:none;flex-direction:column;overflow:hidden;z-index:199;animation:slideUp .3s ease}
+.chat-window.open{display:flex}
+.chat-hd{background:var(--green);padding:.9rem 1rem;display:flex;align-items:center;gap:.65rem}
+.chat-av{width:34px;height:34px;border-radius:50%;background:rgba(255,255,255,.25);display:flex;align-items:center;justify-content:center;font-size:17px}
+.chat-name{color:white;font-weight:700;font-size:.88rem;font-family:'Plus Jakarta Sans',sans-serif}
+.chat-status{color:rgba(255,255,255,.75);font-size:.72rem;font-family:'DM Sans',sans-serif}
+.chat-x{margin-left:auto;background:none;border:none;color:rgba(255,255,255,.8);font-size:18px;cursor:pointer}
+.chat-msgs{flex:1;overflow-y:auto;padding:.9rem;display:flex;flex-direction:column;gap:.65rem}
+.cmsg{max-width:86%;padding:.55rem .85rem;border-radius:13px;font-size:.83rem;line-height:1.5;animation:fadeUp .3s ease}
+.cmsg.bot{background:var(--gray-100);color:var(--text);align-self:flex-start;border-bottom-left-radius:3px}
+.cmsg.user{background:var(--green);color:white;align-self:flex-end;border-bottom-right-radius:3px}
+.chat-suggs{padding:.45rem .9rem;display:flex;gap:.35rem;flex-wrap:wrap;border-top:1px solid var(--gray-100)}
+.csugg{background:var(--green-bg);color:var(--green);border:1px solid #00875125;padding:.2rem .65rem;border-radius:50px;font-size:.73rem;font-weight:600;cursor:pointer;transition:all .2s}
+.csugg:hover{background:var(--green);color:white}
+.chat-inp-row{display:flex;gap:.45rem;padding:.7rem .9rem;border-top:1px solid var(--gray-100)}
+.chat-inp{flex:1;border:1.5px solid var(--gray-200);border-radius:9px;padding:.45rem .75rem;font-family:'DM Sans',sans-serif;font-size:.83rem;outline:none;background:var(--gray-50);color:var(--text);transition:border-color .2s}
+.chat-inp:focus{border-color:var(--green)}
+.chat-send{background:var(--green);border:none;width:34px;height:34px;border-radius:8px;color:white;font-size:15px;cursor:pointer;display:flex;align-items:center;justify-content:center;flex-shrink:0;transition:all .2s}
+.chat-send:hover{background:var(--green-dark)}
+
+/* MODAL */
+.modal-ov{position:fixed;inset:0;background:rgba(0,0,0,.5);z-index:300;display:none;align-items:center;justify-content:center;padding:1rem;backdrop-filter:blur(4px)}
+.modal-ov.open{display:flex}
+.modal{background:var(--white);border-radius:18px;width:100%;max-width:450px;overflow:hidden;animation:scaleIn .3s ease;box-shadow:0 20px 60px rgba(0,0,0,.2)}
+.modal-hd{background:var(--green);padding:1.4rem;color:white;display:flex;align-items:center;justify-content:space-between}
+.modal-title{font-family:'Plus Jakarta Sans',sans-serif;font-weight:800;font-size:1.1rem;letter-spacing:-.01em}
+.modal-x{background:none;border:none;color:white;font-size:20px;cursor:pointer;opacity:.8}
+.modal-body{padding:1.4rem}
+.form-group{margin-bottom:.9rem}
+.form-label{font-size:.8rem;font-weight:700;margin-bottom:.35rem;display:block;color:var(--gray-600)}
+.form-input{width:100%;padding:.65rem .85rem;border:1.5px solid var(--gray-200);border-radius:9px;font-family:'DM Sans',sans-serif;font-size:.88rem;background:var(--gray-50);color:var(--text);outline:none;transition:border-color .2s}
+.form-input:focus{border-color:var(--green)}
+.social-btns{display:flex;gap:.65rem;margin-bottom:.9rem}
+.social-btn{flex:1;display:flex;align-items:center;justify-content:center;gap:.45rem;padding:.6rem;border:1.5px solid var(--gray-200);border-radius:9px;font-size:.83rem;font-weight:700;cursor:pointer;background:var(--white);color:var(--text);transition:all .2s}
+.social-btn:hover{background:var(--gray-50);border-color:var(--gray-400)}
+.divider{display:flex;align-items:center;gap:.65rem;margin:.85rem 0;color:var(--gray-400);font-size:.78rem}
+.divider::before,.divider::after{flex:1;height:1px;background:var(--gray-200);content:''}
+
+/* FOOTER */
+.footer{background:var(--gray-800);color:white;padding:3rem 1.5rem 1.5rem}
+[data-theme="dark"] .footer{background:#0f0e0b}
+.footer-inner{max-width:1200px;margin:0 auto}
+.footer-grid{display:grid;grid-template-columns:2fr 1fr 1fr 1fr;gap:2rem;margin-bottom:2rem}
+.footer-logo{font-family:'Plus Jakarta Sans',sans-serif;font-size:1.25rem;font-weight:800;margin-bottom:.65rem;letter-spacing:-.02em}
+.footer-logo span{color:var(--gold)}
+.footer-desc{font-size:.82rem;color:rgba(255,255,255,.55);line-height:1.6;margin-bottom:.85rem;font-family:'DM Sans',sans-serif}
+.footer-col-title{font-weight:700;font-size:.85rem;margin-bottom:.65rem;font-family:'Plus Jakarta Sans',sans-serif;letter-spacing:-.01em}
+.footer-links{list-style:none;display:flex;flex-direction:column;gap:.35rem}
+.footer-links a{font-size:.8rem;color:rgba(255,255,255,.5);transition:color .2s;font-family:'DM Sans',sans-serif}
+.footer-links a:hover{color:var(--gold)}
+.footer-bottom{border-top:1px solid rgba(255,255,255,.1);padding-top:1.1rem;display:flex;align-items:center;justify-content:space-between;font-size:.75rem;color:rgba(255,255,255,.35);flex-wrap:wrap;gap:.65rem}
+.flag{display:flex;align-items:center;gap:.4rem}
+.flag-strip{width:24px;height:16px;border-radius:3px;overflow:hidden;display:flex}
+.flag-green{width:8px;height:100%;background:#008751;flex-shrink:0}
+.flag-right{flex:1;display:flex;flex-direction:column}
+.flag-yellow{flex:1;background:#ffd700}
+.flag-red{flex:1;background:#e8000d}
+.scroll-top{position:fixed;bottom:5rem;right:1.5rem;width:36px;height:36px;border-radius:50%;background:var(--white);border:1.5px solid var(--gray-200);color:var(--green);font-size:15px;display:none;align-items:center;justify-content:center;cursor:pointer;z-index:198;box-shadow:var(--shadow);transition:all .2s}
+.scroll-top.show{display:flex}
+.scroll-top:hover{background:var(--green);color:white}
+.breadcrumb{font-size:.78rem;color:var(--gray-400);margin-bottom:.65rem}
+.breadcrumb span{margin:0 .25rem}
+.spin{display:inline-block;width:15px;height:15px;border:2px solid rgba(255,255,255,.3);border-top-color:white;border-radius:50%;animation:spin .8s linear infinite}
+.loading-bar{height:3px;background:var(--gray-200);border-radius:2px;overflow:hidden;margin-bottom:1.5rem}
+.loading-fill{height:100%;background:var(--green);border-radius:2px;animation:loadBar 1.5s ease infinite}
+@keyframes fadeUp{from{opacity:0;transform:translateY(18px)}to{opacity:1;transform:translateY(0)}}
+@keyframes fadeRight{from{opacity:0;transform:translateX(25px)}to{opacity:1;transform:translateX(0)}}
+@keyframes progIn{to{transform:scaleX(1)}}
+@keyframes pulse{0%,100%{box-shadow:0 4px 16px rgba(0,135,81,.45)}50%{box-shadow:0 4px 28px rgba(0,135,81,.7)}}
+@keyframes scaleIn{from{opacity:0;transform:scale(.9)}to{opacity:1;transform:scale(1)}}
+@keyframes slideUp{from{opacity:0;transform:translateY(18px)}to{opacity:1;transform:translateY(0)}}
+@keyframes spin{to{transform:rotate(360deg)}}
+@keyframes loadBar{0%{width:0;margin-left:0}50%{width:60%}100%{width:0;margin-left:100%}}
+.text-center{text-align:center}
+.mt-2{margin-top:1rem}
+.mt-3{margin-top:1.5rem}
+@media(max-width:900px){
+  .hero-inner{grid-template-columns:1fr}
+  .hero-cards{display:none}
+  .nav{display:none}
+  .burger{display:flex}
+  .footer-grid{grid-template-columns:1fr 1fr}
+  .stats-row{grid-template-columns:repeat(2,1fr)}
+  .dash-grid{grid-template-columns:1fr}
+  .sidebar{display:none}
+}
+@media(max-width:640px){
+  .hero,.sec{padding:2.5rem 1rem}
+  .header-inner{padding:0 1rem}
+  .courses-grid,.exams-grid{grid-template-columns:1fr}
+  .price-card.featured{transform:none}
+  .footer-grid{grid-template-columns:1fr}
+  .chat-window{width:calc(100vw - 2rem);right:1rem}
+}
+</style>
+</head>
+<body data-theme="light">
+
+<!-- NOTIF -->
+<div class="notif" id="notifBar">
+  <span>🎉</span>
+  <span>Accès gratuit à 3 cours ce mois — <strong>Inscris-toi pour tout débloquer !</strong></span>
+  <button onclick="openModal('authModal')">Commencer gratuitement</button>
+  <button class="notif-x" onclick="this.parentNode.style.display='none'">×</button>
+</div>
+
+<!-- HEADER -->
+<header class="header">
+  <div class="header-inner">
+    <a href="#" class="logo" onclick="showTab('home')">
+      <div class="logo-box">📚</div>Edu<span>Bénin</span>
+    </a>
+    <nav class="nav">
+      <a href="#" onclick="showTab('home')" class="active" id="nav-home">Accueil</a>
+      <a href="#" onclick="showTab('catalogue')" id="nav-catalogue">Cours</a>
+      <a href="#" onclick="showTab('exercices')" id="nav-exercices">Exercices</a>
+      <a href="#" onclick="showTab('examens')" id="nav-examens">Examens</a>
+      <a href="#" onclick="showTab('videos')" id="nav-videos">Vidéos</a>
+      <a href="#" onclick="showTab('methode')" id="nav-methode">Méthode</a>
+      <a href="#" onclick="showTab('dashboard')" id="nav-dashboard">Mon Espace</a>
+    </nav>
+    <div class="hactions">
+      <button class="icon-btn" onclick="toggleTheme()" title="Mode sombre" id="themeBtn">🌙</button>
+      <button class="btn btn-outline btn-sm" onclick="openModal('authModal')">Connexion</button>
+      <button class="btn btn-primary btn-sm" onclick="openModal('premiumModal')">Premium ⭐</button>
+    </div>
+    <button class="burger" onclick="toggleMob()" aria-label="Menu">
+      <span></span><span></span><span></span>
+    </button>
+  </div>
+  <nav class="mob-menu" id="mobMenu">
+    <a href="#" onclick="showTab('home');toggleMob()">🏠 Accueil</a>
+    <a href="#" onclick="showTab('catalogue');toggleMob()">📖 Cours</a>
+    <a href="#" onclick="showTab('exercices');toggleMob()">✏️ Exercices</a>
+    <a href="#" onclick="showTab('examens');toggleMob()">📜 Examens</a>
+    <a href="#" onclick="showTab('videos');toggleMob()">🎬 Vidéos</a>
+    <a href="#" onclick="showTab('methode');toggleMob()">💡 Méthode</a>
+    <a href="#" onclick="showTab('dashboard');toggleMob()">👤 Mon Espace</a>
+  </nav>
+</header>
+
+<main>
+
+<!-- ===== ACCUEIL ===== -->
+<div class="tab-content active" id="tab-home">
+
+  <section class="hero">
+    <div class="hero-kente"></div>
+    <div class="hero-inner">
+      <div>
+        <div class="hero-badge">🇧🇯 Programme MEMP · 6ème → Terminale · 2025</div>
+        <h1 class="hero-title">Apprendre,<br><span class="g">Grandir</span>,<br><span class="o">Réussir.</span></h1>
+        <p class="hero-desc">La plateforme éducative conçue pour les collégiens et lycéens béninois. Cours structurés, exercices interactifs, épreuves BEPC & BAC, et un tuteur IA disponible 24h/24.</p>
+        <div class="hero-btns">
+          <button class="btn btn-primary" onclick="showTab('catalogue')">📚 Explorer les cours</button>
+          <button class="btn btn-outline" onclick="showTab('parcours')">🎯 Parcours de révision</button>
+        </div>
+        <div class="hero-stats">
+          <div class="hstat"><strong>12 000+</strong><span>Élèves actifs</span></div>
+          <div class="hstat"><strong>850+</strong><span>Cours disponibles</span></div>
+          <div class="hstat"><strong>98%</strong><span>Satisfaction</span></div>
+        </div>
+      </div>
+      <div class="hero-cards">
+        <div class="hcard">
+          <div class="hcard-row">
+            <div class="subj-icon" style="background:#e8f5ee">📐</div>
+            <div><div class="hcard-title">Mathématiques — 3ème</div><div class="hcard-sub">Théorème de Pythagore · Ch.4</div></div>
+            <div class="xp-pill">+50 XP</div>
+          </div>
+          <div class="prog-bar"><div class="prog-fill" style="width:72%"></div></div>
+          <div style="font-size:.72rem;color:var(--gray-400);margin-top:.35rem">72% complété</div>
+        </div>
+        <div class="hcard" style="padding:0">
+          <div class="hcard-grid">
+            <div class="hcard-stat"><span class="ico">🏆</span><div class="lbl" style="color:var(--gold-dark)">Top 5% Bénin</div></div>
+            <div class="hcard-stat"><span class="ico">⚡</span><div class="lbl" style="color:var(--green)">7 jours de suite</div></div>
+            <div class="hcard-stat"><span class="ico">📖</span><div class="lbl" style="color:var(--terra)">24 cours suivis</div></div>
+            <div class="hcard-stat"><span class="ico">✅</span><div class="lbl" style="color:var(--indigo)">148 exercices</div></div>
+          </div>
+        </div>
+        <div class="hcard" style="background:var(--green);border-color:var(--green)">
+          <div style="color:white;font-size:.8rem;font-weight:700;margin-bottom:.45rem">🤖 Kémi — Tuteur IA</div>
+          <div style="background:rgba(255,255,255,.15);border-radius:8px;padding:.55rem;font-size:.76rem;color:rgba(255,255,255,.9)">"Explique-moi la différence entre mitose et méiose..."</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- SEARCH -->
+  <section class="search-sec">
+    <div class="search-inner">
+      <div class="search-title">🔍 Que veux-tu apprendre aujourd'hui ?</div>
+      <div class="searchbox">
+        <input type="text" id="searchInput" placeholder="Rechercher un cours, une matière, un niveau...">
+        <button class="search-btn" onclick="handleSearch()">Rechercher</button>
+      </div>
+      <div class="search-tags">
+        <span class="stag" onclick="searchFor('Pythagore')">Pythagore</span>
+        <span class="stag" onclick="searchFor('BEPC 2023')">BEPC 2023</span>
+        <span class="stag" onclick="searchFor('Conjugaison')">Conjugaison</span>
+        <span class="stag" onclick="searchFor('Photosynthèse')">Photosynthèse</span>
+        <span class="stag" onclick="searchFor('BAC série C')">BAC série C</span>
+        <span class="stag" onclick="searchFor('Dissertation')">Dissertation</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- NIVEAUX -->
+  <section class="sec">
+    <div class="container">
+      <div class="sec-hd">
+        <div class="sec-label">Niveaux scolaires</div>
+        <h2 class="sec-title">Du Collège au Lycée 🎓</h2>
+        <p class="sec-desc">Collège (6ème→3ème) et Lycée (2nde→Terminale) — conforme au programme MEMP du Bénin</p>
+      </div>
+      <div style="margin-bottom:1rem">
+        <div style="font-size:.82rem;font-weight:700;color:var(--gray-600);margin-bottom:.6rem;text-transform:uppercase;letter-spacing:.05em;font-size:.72rem">🏫 Collège</div>
+        <div class="levels-grid" style="margin-bottom:1.25rem">
+          <div class="level-card" onclick="goLevel('6ème')"><div class="level-dot" style="background:#fdeee7;color:var(--terra)">6è</div><div class="level-info"><strong>Sixième</strong><span>11-12 ans</span></div></div>
+          <div class="level-card" onclick="goLevel('5ème')"><div class="level-dot" style="background:var(--gold-bg);color:#7a5c00">5è</div><div class="level-info"><strong>Cinquième</strong><span>12-13 ans</span></div></div>
+          <div class="level-card" onclick="goLevel('4ème')"><div class="level-dot" style="background:var(--indigo-bg);color:var(--indigo)">4è</div><div class="level-info"><strong>Quatrième</strong><span>13-14 ans</span></div></div>
+          <div class="level-card" onclick="goLevel('3ème')"><div class="level-dot" style="background:var(--green-bg);color:var(--green)">3è</div><div class="level-info"><strong>Troisième · BEPC</strong><span>14-15 ans</span></div></div>
+        </div>
+        <div style="font-size:.72rem;font-weight:700;color:var(--gray-600);margin-bottom:.6rem;text-transform:uppercase;letter-spacing:.05em">🎓 Lycée</div>
+        <div class="levels-grid">
+          <div class="level-card" onclick="goLevel('2nde')"><div class="level-dot" style="background:#fdeee7;color:var(--terra)">2de</div><div class="level-info"><strong>Seconde</strong><span>15-16 ans</span></div></div>
+          <div class="level-card" onclick="goLevel('1ère')"><div class="level-dot" style="background:var(--gold-bg);color:#7a5c00">1re</div><div class="level-info"><strong>Première</strong><span>16-17 ans</span></div></div>
+          <div class="level-card" onclick="goLevel('Terminale A')"><div class="level-dot" style="background:var(--indigo-bg);color:var(--indigo)">TlA</div><div class="level-info"><strong>Terminale A</strong><span>Littéraire</span></div></div>
+          <div class="level-card" onclick="goLevel('Terminale B')"><div class="level-dot" style="background:var(--terra-bg);color:var(--terra)">TlB</div><div class="level-info"><strong>Terminale B</strong><span>Économique</span></div></div>
+          <div class="level-card" onclick="goLevel('Terminale C')"><div class="level-dot" style="background:var(--green-bg);color:var(--green)">TlC</div><div class="level-info"><strong>Terminale C</strong><span>Scientifique</span></div></div>
+          <div class="level-card" onclick="goLevel('Terminale D')"><div class="level-dot" style="background:var(--green-bg);color:var(--green)">TlD</div><div class="level-info"><strong>Terminale D</strong><span>Sciences Nat.</span></div></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- MATIÈRES -->
+  <section class="sec sec-alt">
+    <div class="container">
+      <div class="sec-hd">
+        <div class="sec-label">Toutes les matières</div>
+        <h2 class="sec-title">Explore par matière 📚</h2>
+      </div>
+      <div class="subjects-grid">
+        <div class="subj-card" style="--sc:#008751" onclick="goSubject('Mathématiques')"><span class="subj-emoji">📐</span><div class="subj-name">Mathématiques</div><div class="subj-count">148 cours</div></div>
+        <div class="subj-card" style="--sc:#2563eb" onclick="goSubject('Français')"><span class="subj-emoji">📝</span><div class="subj-name">Français</div><div class="subj-count">124 cours</div></div>
+        <div class="subj-card" style="--sc:#c0562b" onclick="goSubject('Histoire-Géo')"><span class="subj-emoji">🌍</span><div class="subj-name">Histoire-Géo</div><div class="subj-count">98 cours</div></div>
+        <div class="subj-card" style="--sc:#059669" onclick="goSubject('SVT')"><span class="subj-emoji">🌿</span><div class="subj-name">SVT</div><div class="subj-count">112 cours</div></div>
+        <div class="subj-card" style="--sc:#7c3aed" onclick="goSubject('Physique-Chimie')"><span class="subj-emoji">⚗️</span><div class="subj-name">Physique-Chimie</div><div class="subj-count">96 cours</div></div>
+        <div class="subj-card" style="--sc:#0891b2" onclick="goSubject('Anglais')"><span class="subj-emoji">🗣️</span><div class="subj-name">Anglais</div><div class="subj-count">86 cours</div></div>
+        <div class="subj-card" style="--sc:#b45309" onclick="goSubject('Philosophie')"><span class="subj-emoji">🧠</span><div class="subj-name">Philosophie</div><div class="subj-count">64 cours</div></div>
+        <div class="subj-card" style="--sc:#dc2626" onclick="goSubject('Éducation Civique')"><span class="subj-emoji">🏛️</span><div class="subj-name">Éduc. Civique</div><div class="subj-count">42 cours</div></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- COURS VEDETTES -->
+  <section class="sec">
+    <div class="container">
+      <div class="sec-hd flex">
+        <div><div class="sec-label">Cours populaires</div><h2 class="sec-title">Cours en vedette ⭐</h2></div>
+        <button class="btn btn-outline btn-sm" onclick="showTab('catalogue')">Voir tout →</button>
+      </div>
+      <div class="courses-grid" id="featuredCourses"></div>
+    </div>
+  </section>
+
+  <!-- SIMULATEUR -->
+  <section class="sec sec-alt">
+    <div class="container">
+      <div class="sec-hd text-center">
+        <div class="sec-label">Pratique interactive</div>
+        <h2 class="sec-title">Simulateur d'examen 📋</h2>
+        <p class="sec-desc">Conditions réelles : timer, score final, correction détaillée</p>
+      </div>
+      <div class="sim-widget">
+        <div class="sim-header">
+          <div>
+            <div class="sim-title">📐 Maths · 3ème — Épreuve type BEPC</div>
+            <div style="font-size:.75rem;opacity:.8;margin-top:2px">Question 1/5 · +15 XP en cas de bonne réponse</div>
+          </div>
+          <div class="sim-timer" id="simTimer">03:00</div>
+        </div>
+        <div class="sim-body">
+          <div class="sim-q">Dans un triangle rectangle ABC, l'angle B est droit. On sait que AB = 3 cm et BC = 4 cm. Quelle est la longueur de AC ?</div>
+          <div class="sim-opts" id="simOpts">
+            <button class="sim-opt" onclick="checkSim(this,false)"><div class="opt-letter">A</div> 3,5 cm</button>
+            <button class="sim-opt" onclick="checkSim(this,false)"><div class="opt-letter">B</div> 7 cm</button>
+            <button class="sim-opt" onclick="checkSim(this,true)"><div class="opt-letter">C</div> 5 cm</button>
+            <button class="sim-opt" onclick="checkSim(this,false)"><div class="opt-letter">D</div> 12 cm</button>
+          </div>
+        </div>
+        <div class="sim-exp" id="simExp"></div>
+        <div class="sim-footer">
+          <div class="sim-prog-txt">⏱️ Timer actif · Conditions réelles</div>
+          <button class="btn btn-primary btn-sm" onclick="showTab('exercices')">Plus d'exercices →</button>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- EXAMENS PREVIEW -->
+  <section class="sec">
+    <div class="container">
+      <div class="sec-hd flex">
+        <div><div class="sec-label">Épreuves officielles</div><h2 class="sec-title">BEPC & BAC Bénin 📜</h2></div>
+        <button class="btn btn-outline btn-sm" onclick="showTab('examens')">Voir tout →</button>
+      </div>
+      <div class="exams-grid">
+        <div class="exam-card" onclick="openModal('pdfModal')"><div class="exam-type et-bepc">BEPC</div><div class="exam-title">Mathématiques — 2023</div><div class="exam-meta">📅 Session 2023 · 3h · Corrigé inclus</div><div style="display:flex;gap:.5rem"><button class="btn btn-primary btn-sm">📄 Voir</button><button class="btn btn-outline btn-sm">⬇️ PDF</button></div></div>
+        <div class="exam-card" onclick="openModal('pdfModal')"><div class="exam-type et-bac">BAC Série C</div><div class="exam-title">Physique-Chimie — 2023</div><div class="exam-meta">📅 Session 2023 · 4h · Corrigé inclus</div><div style="display:flex;gap:.5rem"><button class="btn btn-primary btn-sm">📄 Voir</button><button class="btn btn-outline btn-sm">⬇️ PDF</button></div></div>
+        <div class="exam-card" onclick="openModal('pdfModal')"><div class="exam-type et-bac">BAC Série A</div><div class="exam-title">Philosophie — 2022</div><div class="exam-meta">📅 Session 2022 · 4h · Corrigé inclus</div><div style="display:flex;gap:.5rem"><button class="btn btn-primary btn-sm">📄 Voir</button><button class="btn btn-outline btn-sm">⬇️ PDF</button></div></div>
+        <div class="exam-card" onclick="openModal('pdfModal')"><div class="exam-type et-bepc">BEPC</div><div class="exam-title">Français — 2022</div><div class="exam-meta">📅 Session 2022 · 3h · Corrigé inclus</div><div style="display:flex;gap:.5rem"><button class="btn btn-primary btn-sm">📄 Voir</button><button class="btn btn-outline btn-sm">⬇️ PDF</button></div></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- TEMOIGNAGES -->
+  <section class="sec sec-alt">
+    <div class="container">
+      <div class="sec-hd text-center"><div class="sec-label">Témoignages</div><h2 class="sec-title">Ils ont réussi grâce à EduBénin 🏆</h2></div>
+      <div class="testi-grid">
+        <div class="testi-card"><div class="stars">★★★★★</div><p class="testi-txt">"Grâce aux cours de maths, j'ai eu 16/20 au BEPC ! Les exercices avec corrections m'ont vraiment aidé à comprendre."</p><div class="testi-auth"><div class="avatar" style="background:var(--green)">AK</div><div><div class="testi-name">Adjoua Kpossou</div><div class="testi-school">CEG Cotonou Nord · 3ème</div></div></div></div>
+        <div class="testi-card"><div class="stars">★★★★★</div><p class="testi-txt">"Le chatbot IA Kémi explique les cours mieux que certains profs ! Mention Bien au BAC série C. Merci EduBénin !"</p><div class="testi-auth"><div class="avatar" style="background:var(--terra)">MY</div><div><div class="testi-name">Maxime Yèhouénou</div><div class="testi-school">Lycée Béhanzin Porto-Novo · Tle C</div></div></div></div>
+        <div class="testi-card"><div class="stars">★★★★★</div><p class="testi-txt">"Les épreuves corrigées m'ont permis de bien me préparer. Le site marche même avec ma 3G au village !"</p><div class="testi-auth"><div class="avatar" style="background:var(--indigo)">FS</div><div><div class="testi-name">Fatima Sounon</div><div class="testi-school">CEG Parakou · Tle A</div></div></div></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="prem-banner">
+    <h2>🚀 Passe à Premium — 1 500 FCFA/mois</h2>
+    <p>Cours illimités · Épreuves PDF · Chatbot IA 24h/24 · Badges & classement</p>
+    <div class="prem-btns">
+      <button class="btn btn-gold" onclick="showTab('pricing')">⭐ Voir les offres</button>
+      <button class="btn" style="background:rgba(255,255,255,.2);color:white;border:1.5px solid rgba(255,255,255,.35)" onclick="openModal('authModal')">Essai gratuit →</button>
+    </div>
+  </section>
+</div>
+
+<!-- ===== CATALOGUE ===== -->
+<div class="tab-content" id="tab-catalogue">
+  <section class="sec">
+    <div class="container">
+      <div class="breadcrumb">🏠 Accueil <span>›</span> Catalogue</div>
+      <div class="sec-hd"><div class="sec-label">Tous les cours</div><h2 class="sec-title">Catalogue de cours 📖</h2><p class="sec-desc">Conformes au programme MEMP · 6ème à Terminale</p></div>
+      <div class="tabs">
+        <button class="tab active" onclick="switchTab(this,'all',true)">Tous</button>
+        <button class="tab" onclick="switchTab(this,'math',true)">📐 Maths</button>
+        <button class="tab" onclick="switchTab(this,'fr',true)">📝 Français</button>
+        <button class="tab" onclick="switchTab(this,'svt',true)">🌿 SVT</button>
+        <button class="tab" onclick="switchTab(this,'pc',true)">⚗️ Physique-Chimie</button>
+        <button class="tab" onclick="switchTab(this,'hg',true)">🌍 Histoire-Géo</button>
+        <button class="tab" onclick="switchTab(this,'en',true)">🗣️ Anglais</button>
+        <button class="tab" onclick="switchTab(this,'philo',true)">🧠 Philosophie</button>
+      </div>
+      <div class="filter-row">
+        <span style="font-size:.8rem;font-weight:600;color:var(--gray-600)">Niveau :</span>
+        <button class="fbtn active" onclick="filterLvl(this,'all')">Tous</button>
+        <button class="fbtn" onclick="filterLvl(this,'college')">Collège</button>
+        <button class="fbtn" onclick="filterLvl(this,'lycee')">Lycée</button>
+        <button class="fbtn" onclick="filterLvl(this,'bepc')">→ BEPC</button>
+        <button class="fbtn" onclick="filterLvl(this,'bac')">→ BAC</button>
+      </div>
+      <div class="courses-grid" id="catalogueGrid"></div>
+    </div>
+  </section>
+</div>
+
+<!-- ===== PARCOURS ===== -->
+<div class="tab-content" id="tab-parcours">
+  <section class="sec">
+    <div class="container">
+      <div class="breadcrumb">🏠 Accueil <span>›</span> Parcours</div>
+      <div class="sec-hd"><div class="sec-label">Révision guidée</div><h2 class="sec-title">Parcours de révision 🎯</h2><p class="sec-desc">Des programmes structurés pour préparer efficacement tes examens</p></div>
+      <div class="parcours-grid">
+        <div class="parcours-card" style="--pc:var(--green)" onclick="openModal('authModal')"><span class="parcours-icon">🏁</span><div class="parcours-title">BEPC en 30 jours</div><div class="parcours-desc">Programme intensif toutes matières pour décrocher le BEPC. 1h par jour.</div><div class="parcours-meta"><span>📚 45 cours</span><span>✏️ 90 exercices</span><span>⏱️ 30 jours</span></div></div>
+        <div class="parcours-card" style="--pc:var(--gold-dark)" onclick="openModal('authModal')"><span class="parcours-icon">⚡</span><div class="parcours-title">Maths 3ème — Zéro lacune</div><div class="parcours-desc">Reprends les bases et maîtrise tous les chapitres du programme de 3ème.</div><div class="parcours-meta"><span>📚 18 cours</span><span>✏️ 54 exercices</span><span>⏱️ 3 semaines</span></div></div>
+        <div class="parcours-card" style="--pc:var(--terra)" onclick="openModal('authModal')"><span class="parcours-icon">🎓</span><div class="parcours-title">BAC Série C — Top prépa</div><div class="parcours-desc">Maths, Physique-Chimie, SVT niveau Terminale C. Annales incluses.</div><div class="parcours-meta"><span>📚 62 cours</span><span>✏️ 120 exercices</span><span>⏱️ 45 jours</span></div></div>
+        <div class="parcours-card" style="--pc:var(--indigo)" onclick="openModal('authModal')"><span class="parcours-icon">📝</span><div class="parcours-title">Français — Maîtriser la dissertation</div><div class="parcours-desc">De l'introduction à la conclusion : méthode complète + exercices corrigés.</div><div class="parcours-meta"><span>📚 12 cours</span><span>✏️ 24 exercices</span><span>⏱️ 2 semaines</span></div></div>
+        <div class="parcours-card" style="--pc:#059669" onclick="openModal('authModal')"><span class="parcours-icon">🌿</span><div class="parcours-title">SVT 4ème → 3ème</div><div class="parcours-desc">Photosynthèse, respiration, génétique — les chapitres clés du BEPC SVT.</div><div class="parcours-meta"><span>📚 16 cours</span><span>✏️ 48 exercices</span><span>⏱️ 3 semaines</span></div></div>
+        <div class="parcours-card" style="--pc:#0891b2" onclick="openModal('authModal')"><span class="parcours-icon">🗣️</span><div class="parcours-title">Anglais — Niveau B1 Lycée</div><div class="parcours-desc">Grammaire, vocabulaire et expression pour réussir l'anglais au lycée.</div><div class="parcours-meta"><span>📚 20 cours</span><span>✏️ 40 exercices</span><span>⏱️ 4 semaines</span></div></div>
+      </div>
+    </div>
+  </section>
+</div>
+
+<!-- ===== EXERCICES ===== -->
+<div class="tab-content" id="tab-exercices">
+  <section class="sec">
+    <div class="container">
+      <div class="breadcrumb">🏠 Accueil <span>›</span> Exercices</div>
+      <div class="sec-hd"><div class="sec-label">Pratique & Révision</div><h2 class="sec-title">Exercices interactifs ✏️</h2><p class="sec-desc">QCM, calculs, questions ouvertes — corrections détaillées instantanées</p></div>
+      <div class="filter-row">
+        <button class="fbtn active" onclick="filterExo(this,'all')">Tous</button>
+        <button class="fbtn" onclick="filterExo(this,'easy')">📗 Facile</button>
+        <button class="fbtn" onclick="filterExo(this,'medium')">📘 Moyen</button>
+        <button class="fbtn" onclick="filterExo(this,'hard')">📕 Difficile</button>
+      </div>
+      <div class="exercises-grid" id="exercicesGrid"></div>
+    </div>
+  </section>
+</div>
+
+<!-- ===== EXAMENS ===== -->
+<div class="tab-content" id="tab-examens">
+  <section class="sec">
+    <div class="container">
+      <div class="breadcrumb">🏠 Accueil <span>›</span> Examens</div>
+      <div class="sec-hd"><div class="sec-label">Épreuves officielles</div><h2 class="sec-title">Bibliothèque BEPC & BAC 📜</h2><p class="sec-desc">Toutes les épreuves officielles du Bénin avec corrigés téléchargeables</p></div>
+      <div class="tabs">
+        <button class="tab active" onclick="switchTab(this,'bepc',false)">BEPC</button>
+        <button class="tab" onclick="switchTab(this,'bac-a',false)">BAC Série A</button>
+        <button class="tab" onclick="switchTab(this,'bac-b',false)">BAC Série B</button>
+        <button class="tab" onclick="switchTab(this,'bac-c',false)">BAC Série C</button>
+        <button class="tab" onclick="switchTab(this,'bac-d',false)">BAC Série D</button>
+        <button class="tab" onclick="switchTab(this,'bac-g',false)">BAC Série G</button>
+      </div>
+      <div class="exams-grid" id="examsGrid"></div>
+    </div>
+  </section>
+</div>
+
+<!-- ===== VIDEOS ===== -->
+<div class="tab-content" id="tab-videos">
+  <section class="sec">
+    <div class="container">
+      <div class="breadcrumb">🏠 Accueil <span>›</span> Vidéothèque</div>
+      <div class="sec-hd"><div class="sec-label">Vidéos pédagogiques</div><h2 class="sec-title">Vidéothèque 🎬</h2><p class="sec-desc">Vidéos courtes (5-15 min) optimisées basse connexion, par des profs béninois</p></div>
+      <div class="videos-grid" id="videosGrid"></div>
+    </div>
+  </section>
+</div>
+
+<!-- ===== MÉTHODE ===== -->
+<div class="tab-content" id="tab-methode">
+  <section class="sec">
+    <div class="container">
+      <div class="breadcrumb">🏠 Accueil <span>›</span> Méthode</div>
+      <div class="sec-hd"><div class="sec-label">Apprendre à apprendre</div><h2 class="sec-title">La section Méthode 💡</h2><p class="sec-desc">Les compétences transversales que l'école béninoise n'enseigne pas assez</p></div>
+      <div class="methode-grid">
+        <div class="methode-card" onclick="openModal('authModal')"><span class="methode-icon">📝</span><div class="methode-title">Réussir une dissertation</div><div class="methode-desc">Introduction, thèse, antithèse, synthèse — méthode complète avec exemples corrigés.</div></div>
+        <div class="methode-card" onclick="openModal('authModal')"><span class="methode-icon">📐</span><div class="methode-title">Lire un énoncé de maths</div><div class="methode-desc">Comment décrypter une question, identifier les données et choisir la bonne méthode.</div></div>
+        <div class="methode-card" onclick="openModal('authModal')"><span class="methode-icon">🌿</span><div class="methode-title">Structurer une réponse SVT</div><div class="methode-desc">Introduction, développement schématisé, conclusion — le format attendu au BAC.</div></div>
+        <div class="methode-card" onclick="openModal('authModal')"><span class="methode-icon">🗂️</span><div class="methode-title">Faire une fiche de révision</div><div class="methode-desc">Technique de la carte mentale et des fiches synthèse pour mémoriser durablement.</div></div>
+        <div class="methode-card" onclick="openModal('authModal')"><span class="methode-icon">⏰</span><div class="methode-title">Gérer son temps à l'examen</div><div class="methode-desc">Stratégie pour ne jamais manquer de temps : lecture globale, ordre des questions, relecture.</div></div>
+        <div class="methode-card" onclick="openModal('authModal')"><span class="methode-icon">🧠</span><div class="methode-title">Techniques de mémorisation</div><div class="methode-desc">Répétition espacée, mnémotechniques, association d'idées — testées et approuvées.</div></div>
+        <div class="methode-card" onclick="openModal('authModal')"><span class="methode-icon">📊</span><div class="methode-title">Analyser un graphique</div><div class="methode-desc">Méthode universelle pour décrire et interpréter n'importe quel graphique ou tableau.</div></div>
+        <div class="methode-card" onclick="openModal('authModal')"><span class="methode-icon">✍️</span><div class="methode-title">Rédiger un commentaire de texte</div><div class="methode-desc">Français et Philo : contextualisation, analyse, critique — pas à pas.</div></div>
+      </div>
+    </div>
+  </section>
+</div>
+
+<!-- ===== CLASSEMENT ===== -->
+<div class="tab-content" id="tab-classement">
+  <section class="sec">
+    <div class="container">
+      <div class="breadcrumb">🏠 Accueil <span>›</span> Classement</div>
+      <div class="sec-hd"><div class="sec-label">Compétition amicale</div><h2 class="sec-title">Classement par ville 🏆</h2><p class="sec-desc">Qui sont les meilleurs élèves de ta ville ce mois-ci ?</p></div>
+      <div class="classement-grid">
+        <div class="class-card">
+          <div class="class-title">📍 Cotonou</div>
+          <div class="class-row"><div class="rank r1">1</div><div class="avatar" style="background:var(--green);margin-right:2px">AK</div><div class="class-name">Adjoua Kpossou</div><div class="class-xp">2 480 XP</div></div>
+          <div class="class-row"><div class="rank r2">2</div><div class="avatar" style="background:var(--terra);margin-right:2px">MB</div><div class="class-name">Médard Bossou</div><div class="class-xp">2 210 XP</div></div>
+          <div class="class-row"><div class="rank r3">3</div><div class="avatar" style="background:var(--indigo);margin-right:2px">SH</div><div class="class-name">Siham Houinsou</div><div class="class-xp">1 990 XP</div></div>
+          <div class="class-row"><div class="rank rn">4</div><div class="avatar" style="background:var(--gray-600);margin-right:2px">KA</div><div class="class-name">Kofi Ahouandjinou</div><div class="class-xp">1 780 XP</div></div>
+          <div class="class-row"><div class="rank rn">5</div><div class="avatar" style="background:#059669;margin-right:2px">FD</div><div class="class-name">Fanta Dossou</div><div class="class-xp">1 640 XP</div></div>
+        </div>
+        <div class="class-card">
+          <div class="class-title">📍 Porto-Novo</div>
+          <div class="class-row"><div class="rank r1">1</div><div class="avatar" style="background:var(--terra);margin-right:2px">MY</div><div class="class-name">Maxime Yèhouénou</div><div class="class-xp">3 120 XP</div></div>
+          <div class="class-row"><div class="rank r2">2</div><div class="avatar" style="background:var(--green);margin-right:2px">CA</div><div class="class-name">Clarisse Agossou</div><div class="class-xp">2 850 XP</div></div>
+          <div class="class-row"><div class="rank r3">3</div><div class="avatar" style="background:var(--gold-dark);margin-right:2px">EK</div><div class="class-name">Édouard Kinnou</div><div class="class-xp">2 600 XP</div></div>
+          <div class="class-row"><div class="rank rn">4</div><div class="avatar" style="background:var(--indigo);margin-right:2px">PS</div><div class="class-name">Patricia Sossou</div><div class="class-xp">2 340 XP</div></div>
+          <div class="class-row"><div class="rank rn">5</div><div class="avatar" style="background:#0891b2;margin-right:2px">BH</div><div class="class-name">Boris Hounsa</div><div class="class-xp">2 100 XP</div></div>
+        </div>
+        <div class="class-card">
+          <div class="class-title">📍 Parakou</div>
+          <div class="class-row"><div class="rank r1">1</div><div class="avatar" style="background:var(--indigo);margin-right:2px">FS</div><div class="class-name">Fatima Sounon</div><div class="class-xp">2 760 XP</div></div>
+          <div class="class-row"><div class="rank r2">2</div><div class="avatar" style="background:var(--green);margin-right:2px">IG</div><div class="class-name">Ibrahim Gbènou</div><div class="class-xp">2 430 XP</div></div>
+          <div class="class-row"><div class="rank r3">3</div><div class="avatar" style="background:var(--terra);margin-right:2px">RA</div><div class="class-name">Rachida Agbassou</div><div class="class-xp">2 180 XP</div></div>
+          <div class="class-row"><div class="rank rn">4</div><div class="avatar" style="background:#059669;margin-right:2px">TK</div><div class="class-name">Théophile Kpossou</div><div class="class-xp">1 920 XP</div></div>
+          <div class="class-row"><div class="rank rn">5</div><div class="avatar" style="background:var(--gold-dark);margin-right:2px">LB</div><div class="class-name">Laure Bossou</div><div class="class-xp">1 750 XP</div></div>
+        </div>
+      </div>
+    </div>
+  </section>
+</div>
+
+<!-- ===== DASHBOARD ===== -->
+<div class="tab-content" id="tab-dashboard">
+  <section class="sec">
+    <div class="container">
+      <div class="breadcrumb">🏠 Accueil <span>›</span> Mon Espace</div>
+      <div class="dash-grid">
+        <div class="sidebar">
+          <div class="user-prof">
+            <div class="u-avatar">KA</div>
+            <div class="u-name">Kofi Ahouandjinou</div>
+            <div class="u-school">Lycée Mathieu Bouké · Cotonou</div>
+            <div class="xp-box"><div class="xp-val">1 240 XP</div><div class="xp-label">🏆 Niveau Intermédiaire</div></div>
+          </div>
+          <div class="sb-menu">
+            <div class="sb-item active"><span class="ico">📊</span><span>Tableau de bord</span></div>
+            <div class="sb-item"><span class="ico">📚</span><span>Mes cours</span></div>
+            <div class="sb-item"><span class="ico">✏️</span><span>Mes exercices</span></div>
+            <div class="sb-item"><span class="ico">🏆</span><span>Mes badges</span></div>
+            <div class="sb-item" onclick="showTab('classement')"><span class="ico">📈</span><span>Classement</span></div>
+            <div class="sb-item" onclick="showTab('parcours')"><span class="ico">🎯</span><span>Mes parcours</span></div>
+            <div class="sb-item" onclick="openModal('premiumModal')"><span class="ico">⭐</span><span>Passer Premium</span></div>
+          </div>
+        </div>
+        <div class="dash-main">
+          <div class="stats-row">
+            <div class="stat-card"><div class="stat-ico">📚</div><div class="stat-val">24</div><div class="stat-lbl">Cours suivis</div></div>
+            <div class="stat-card"><div class="stat-ico">✅</div><div class="stat-val">148</div><div class="stat-lbl">Exercices faits</div></div>
+            <div class="stat-card"><div class="stat-ico">⚡</div><div class="stat-val">7</div><div class="stat-lbl">Jours de suite</div></div>
+            <div class="stat-card"><div class="stat-ico">🎯</div><div class="stat-val">78%</div><div class="stat-lbl">Score moyen</div></div>
+          </div>
+          <div class="dash-card">
+            <div class="dash-card-title"><span>📈 Progression cette semaine</span></div>
+            <div style="display:flex;gap:.4rem;align-items:flex-end;height:72px;margin-bottom:.4rem">
+              <div style="flex:1;display:flex;flex-direction:column;align-items:center;gap:3px"><div style="flex:1;width:100%;border-radius:3px 3px 0 0;background:var(--green-bg);position:relative;overflow:hidden"><div style="position:absolute;bottom:0;width:100%;height:60%;background:var(--green);border-radius:3px 3px 0 0"></div></div><span style="font-size:.62rem;color:var(--gray-400)">Lun</span></div>
+              <div style="flex:1;display:flex;flex-direction:column;align-items:center;gap:3px"><div style="flex:1;width:100%;border-radius:3px 3px 0 0;background:var(--green-bg);position:relative;overflow:hidden"><div style="position:absolute;bottom:0;width:100%;height:40%;background:var(--green);border-radius:3px 3px 0 0"></div></div><span style="font-size:.62rem;color:var(--gray-400)">Mar</span></div>
+              <div style="flex:1;display:flex;flex-direction:column;align-items:center;gap:3px"><div style="flex:1;width:100%;border-radius:3px 3px 0 0;background:var(--green-bg);position:relative;overflow:hidden"><div style="position:absolute;bottom:0;width:100%;height:85%;background:var(--green);border-radius:3px 3px 0 0"></div></div><span style="font-size:.62rem;color:var(--gray-400)">Mer</span></div>
+              <div style="flex:1;display:flex;flex-direction:column;align-items:center;gap:3px"><div style="flex:1;width:100%;border-radius:3px 3px 0 0;background:var(--green-bg);position:relative;overflow:hidden"><div style="position:absolute;bottom:0;width:100%;height:55%;background:var(--green);border-radius:3px 3px 0 0"></div></div><span style="font-size:.62rem;color:var(--gray-400)">Jeu</span></div>
+              <div style="flex:1;display:flex;flex-direction:column;align-items:center;gap:3px"><div style="flex:1;width:100%;border-radius:3px 3px 0 0;background:var(--green-bg);position:relative;overflow:hidden"><div style="position:absolute;bottom:0;width:100%;height:92%;background:var(--gold);border-radius:3px 3px 0 0"></div></div><span style="font-size:.62rem;color:var(--gray-400)">Ven</span></div>
+              <div style="flex:1;display:flex;flex-direction:column;align-items:center;gap:3px"><div style="flex:1;width:100%;border-radius:3px 3px 0 0;background:var(--green-bg);position:relative;overflow:hidden"><div style="position:absolute;bottom:0;width:100%;height:30%;background:var(--green);border-radius:3px 3px 0 0"></div></div><span style="font-size:.62rem;color:var(--gray-400)">Sam</span></div>
+              <div style="flex:1;display:flex;flex-direction:column;align-items:center;gap:3px"><div style="flex:1;width:100%;border-radius:3px 3px 0 0;background:var(--green-bg);position:relative;overflow:hidden"><div style="position:absolute;bottom:0;width:100%;height:70%;background:var(--terra);border-radius:3px 3px 0 0"></div></div><span style="font-size:.62rem;color:var(--gray-400)">Dim</span></div>
+            </div>
+          </div>
+          <div style="display:grid;grid-template-columns:1fr 1fr;gap:1.1rem">
+            <div class="dash-card">
+              <div class="dash-card-title"><span>📚 Derniers cours</span></div>
+              <div class="rec-row"><div class="rec-icon" style="background:#e8f5ee">📐</div><div><div class="rec-name">Fonctions 2nd degré</div><div class="rec-sub">Maths · Terminale · 72%</div></div></div>
+              <div class="rec-row"><div class="rec-icon" style="background:#fffbe6">📝</div><div><div class="rec-name">Poésie africaine</div><div class="rec-sub">Français · 1ère · 100% ✅</div></div></div>
+              <div class="rec-row"><div class="rec-icon" style="background:var(--indigo-bg)">⚗️</div><div><div class="rec-name">Réactions acide-base</div><div class="rec-sub">Physique · Terminale · 35%</div></div></div>
+            </div>
+            <div class="dash-card">
+              <div class="dash-card-title"><span>🏆 Mes badges</span></div>
+              <div class="badges-grid">
+                <div class="badge-item"><div class="badge-ico b-earned">🔥</div><span>7 jours</span></div>
+                <div class="badge-item"><div class="badge-ico b-earned">📚</div><span>10 cours</span></div>
+                <div class="badge-item"><div class="badge-ico b-earned">🏆</div><span>Top 10%</span></div>
+                <div class="badge-item"><div class="badge-ico b-earned">⭐</div><span>Score 90%</span></div>
+                <div class="badge-item"><div class="badge-ico b-locked">💎</div><span>30 jours</span></div>
+                <div class="badge-item"><div class="badge-ico b-locked">🚀</div><span>50 cours</span></div>
+                <div class="badge-item"><div class="badge-ico b-locked">👑</div><span>Expert</span></div>
+                <div class="badge-item"><div class="badge-ico b-locked">🎓</div><span>BEPC</span></div>
+              </div>
+            </div>
+          </div>
+          <div class="dash-card">
+            <div class="dash-card-title"><span>🎯 Recommandations personnalisées</span></div>
+            <div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(190px,1fr));gap:.65rem">
+              <div style="background:var(--green-bg);border:1px solid #00875118;border-radius:9px;padding:.7rem"><div style="font-size:.75rem;font-weight:700;color:var(--green);margin-bottom:.25rem">📐 Maths · Terminale</div><div style="font-size:.83rem;font-weight:700">Suites numériques</div><div style="font-size:.72rem;color:var(--gray-600);margin-top:.2rem">Basé sur ta progression</div></div>
+              <div style="background:var(--terra-bg);border:1px solid #c0562b18;border-radius:9px;padding:.7rem"><div style="font-size:.75rem;font-weight:700;color:var(--terra);margin-bottom:.25rem">⚗️ Physique · Terminale</div><div style="font-size:.83rem;font-weight:700">Cinétique chimique</div><div style="font-size:.72rem;color:var(--gray-600);margin-top:.2rem">Continue le chapitre</div></div>
+              <div style="background:var(--gold-bg);border:1px solid #ffd70018;border-radius:9px;padding:.7rem"><div style="font-size:.75rem;font-weight:700;color:var(--gold-dark);margin-bottom:.25rem">📝 Révision BEPC</div><div style="font-size:.83rem;font-weight:700">Épreuve Maths 2022</div><div style="font-size:.72rem;color:var(--gray-600);margin-top:.2rem">Prépare l'examen</div></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+</div>
+
+<!-- ===== PRICING ===== -->
+<div class="tab-content" id="tab-pricing">
+  <section class="sec">
+    <div class="container">
+      <div class="sec-hd text-center"><div class="sec-label">Tarifs</div><h2 class="sec-title">Choisis ton plan ⭐</h2><p class="sec-desc">Accessible à tous les élèves béninois</p></div>
+      <div class="pricing-grid">
+        <div class="price-card">
+          <div class="price-name">🆓 Gratuit</div>
+          <div class="price-val"><strong>0</strong><span>FCFA/mois</span></div>
+          <div class="price-sub">Sans inscription obligatoire</div>
+          <ul class="price-feats">
+            <li><span class="ck">✅</span> 3 cours par mois</li>
+            <li><span class="ck">✅</span> 5 exercices par mois</li>
+            <li><span class="ck">✅</span> 2 vidéos par mois</li>
+            <li><span class="cx">❌</span> Épreuves PDF</li>
+            <li><span class="cx">❌</span> Chatbot IA Kémi</li>
+            <li><span class="cx">❌</span> Parcours de révision</li>
+            <li><span class="cx">❌</span> Classement & badges</li>
+          </ul>
+          <button class="btn btn-outline btn-w" onclick="openModal('authModal')">Commencer gratuitement</button>
+        </div>
+        <div class="price-card featured">
+          <div class="price-badge">⭐ Le plus populaire</div>
+          <div class="price-name">🚀 Premium Élève</div>
+          <div class="price-val"><strong>1 500</strong><span>FCFA/mois</span></div>
+          <div class="price-sub">ou 12 000 FCFA/an (économise 6 000 FCFA)</div>
+          <ul class="price-feats">
+            <li><span class="ck">✅</span> Cours illimités (850+)</li>
+            <li><span class="ck">✅</span> Exercices + corrections</li>
+            <li><span class="ck">✅</span> Épreuves BEPC & BAC PDF</li>
+            <li><span class="ck">✅</span> Chatbot IA Kémi 24h/24</li>
+            <li><span class="ck">✅</span> Parcours de révision guidés</li>
+            <li><span class="ck">✅</span> Classement & badges XP</li>
+            <li><span class="ck">✅</span> Section Méthode complète</li>
+            <li><span class="ck">✅</span> Mode hors-ligne (PWA)</li>
+          </ul>
+          <button class="btn btn-primary btn-w" onclick="openModal('premiumModal')">S'abonner maintenant</button>
+        </div>
+        <div class="price-card">
+          <div class="price-name">🏫 Établissement</div>
+          <div class="price-val"><strong>Sur</strong><span>devis</span></div>
+          <div class="price-sub">Pour lycées, collèges et CEG</div>
+          <ul class="price-feats">
+            <li><span class="ck">✅</span> Accès illimité pour tous</li>
+            <li><span class="ck">✅</span> Tableau de bord enseignant</li>
+            <li><span class="ck">✅</span> Suivi de classe temps réel</li>
+            <li><span class="ck">✅</span> Contenu personnalisé MEMP</li>
+            <li><span class="ck">✅</span> Formation des enseignants</li>
+            <li><span class="ck">✅</span> Rapports mensuels</li>
+            <li><span class="ck">✅</span> Support prioritaire</li>
+          </ul>
+          <button class="btn btn-outline btn-w">Nous contacter</button>
+        </div>
+      </div>
+      <div class="text-center mt-3">
+        <p style="font-size:.85rem;color:var(--gray-600);margin-bottom:.75rem">💳 Moyens de paiement acceptés au Bénin</p>
+        <div class="pay-methods">
+          <div class="pay-badge"><div class="pay-dot" style="background:#FFD700"></div>MTN Mobile Money</div>
+          <div class="pay-badge"><div class="pay-dot" style="background:#0066cc"></div>Moov Money</div>
+          <div class="pay-badge"><div class="pay-dot" style="background:#00b4d8"></div>Wave</div>
+          <div class="pay-badge"><div class="pay-dot" style="background:#1a9e5f"></div>FedaPay</div>
+          <div class="pay-badge"><div class="pay-dot" style="background:#635bff"></div>Stripe</div>
+        </div>
+      </div>
+    </div>
+  </section>
+</div>
+
+</main>
+
+<!-- CHATBOT FAB -->
+<div class="chat-fab">
+  <button class="chat-btn" onclick="toggleChat()" id="chatFab">🤖</button>
+</div>
+<div class="chat-window" id="chatWindow">
+  <div class="chat-hd">
+    <div class="chat-av">🤖</div>
+    <div><div class="chat-name">Kémi — Tuteur IA</div><div class="chat-status">● En ligne · Répond en 2 secondes</div></div>
+    <button class="chat-x" onclick="toggleChat()">×</button>
+  </div>
+  <div class="chat-msgs" id="chatMsgs">
+    <div class="cmsg bot">👋 Bonjour ! Je suis Kémi, ton tuteur IA EduBénin. Je peux t'expliquer les cours, corriger tes devoirs et t'aider à préparer le BEPC ou le BAC. Pose-moi ta question !</div>
+  </div>
+  <div class="chat-suggs">
+    <button class="csugg" onclick="sendChat('Explique-moi le théorème de Pythagore')">Pythagore</button>
+    <button class="csugg" onclick="sendChat('Comment réussir une dissertation ?')">Dissertation</button>
+    <button class="csugg" onclick="sendChat('Révision BEPC Maths')">BEPC Maths</button>
+    <button class="csugg" onclick="sendChat('La photosynthèse en SVT')">SVT</button>
+  </div>
+  <div class="chat-inp-row">
+    <input class="chat-inp" id="chatInp" type="text" placeholder="Pose ta question..." onkeydown="if(event.key==='Enter')sendChat()">
+    <button class="chat-send" onclick="sendChat()">➤</button>
+  </div>
+</div>
+
+<button class="scroll-top" id="scrollTop" onclick="window.scrollTo({top:0,behavior:'smooth'})">↑</button>
+
+<!-- MODAL AUTH -->
+<div class="modal-ov" id="authModal" onclick="if(event.target===this)closeModal('authModal')">
+  <div class="modal">
+    <div class="modal-hd"><div class="modal-title">Connexion / Inscription</div><button class="modal-x" onclick="closeModal('authModal')">×</button></div>
+    <div class="modal-body">
+      <div class="social-btns">
+        <button class="social-btn">🔵 Google</button>
+        <button class="social-btn">📱 Téléphone OTP</button>
+      </div>
+      <div class="divider">ou avec email</div>
+      <div class="form-group"><label class="form-label">Adresse email</label><input class="form-input" type="email" placeholder="kofi@exemple.com"></div>
+      <div class="form-group"><label class="form-label">Mot de passe</label><input class="form-input" type="password" placeholder="••••••••"></div>
+      <div class="form-group">
+        <label class="form-label">Niveau scolaire</label>
+        <select class="form-input">
+          <option>Sélectionner...</option>
+          <option>6ème</option><option>5ème</option><option>4ème</option><option>3ème</option>
+          <option>2nde</option><option>1ère</option>
+          <option>Terminale A</option><option>Terminale B</option><option>Terminale C</option><option>Terminale D</option><option>Terminale G</option>
+        </select>
+      </div>
+      <button class="btn btn-primary btn-w" onclick="handleLogin()"><span id="loginTxt">Se connecter / S'inscrire</span></button>
+      <p style="text-align:center;font-size:.78rem;color:var(--gray-400);margin-top:.75rem">En continuant, tu acceptes nos <a href="#" style="color:var(--green)">CGU</a></p>
+    </div>
+  </div>
+</div>
+
+<!-- MODAL PREMIUM -->
+<div class="modal-ov" id="premiumModal" onclick="if(event.target===this)closeModal('premiumModal')">
+  <div class="modal">
+    <div class="modal-hd"><div class="modal-title">⭐ Passer à Premium</div><button class="modal-x" onclick="closeModal('premiumModal')">×</button></div>
+    <div class="modal-body">
+      <div style="background:var(--green-bg);border-radius:10px;padding:.9rem;margin-bottom:1rem;font-size:.83rem;color:var(--gray-600)">
+        <div style="font-weight:700;color:var(--green);margin-bottom:.4rem">Inclus dans Premium :</div>
+        <div>✅ 850+ cours illimités &nbsp;&nbsp; ✅ Épreuves BEPC & BAC PDF</div>
+        <div>✅ Chatbot IA Kémi 24h/24 &nbsp;&nbsp; ✅ Parcours de révision guidés</div>
+        <div>✅ Classement par ville &nbsp;&nbsp; ✅ Badges & XP</div>
+      </div>
+      <div style="display:grid;grid-template-columns:1fr 1fr;gap:.65rem;margin-bottom:1rem">
+        <button id="btnMonthly" onclick="selectPlan('monthly')" style="border:1.5px solid var(--gray-200);border-radius:10px;padding:.9rem;cursor:pointer;background:var(--white);color:var(--text);font-family:'DM Sans',sans-serif">
+          <strong style="display:block;font-size:1.1rem;color:var(--green)">1 500 FCFA</strong><span style="font-size:.75rem;color:var(--gray-400)">Par mois</span>
+        </button>
+        <button id="btnAnnual" onclick="selectPlan('annual')" style="border:2px solid var(--green);border-radius:10px;padding:.9rem;cursor:pointer;background:var(--green-bg);color:var(--text);font-family:'DM Sans',sans-serif">
+          <strong style="display:block;font-size:1.1rem;color:var(--green)">12 000 FCFA</strong><span style="font-size:.75rem;color:var(--gray-600)">Par an · -33%</span>
+        </button>
+      </div>
+      <div class="form-group"><label class="form-label">Moyen de paiement</label>
+        <select class="form-input" id="payMethod">
+          <option value="mtn">📱 MTN Mobile Money</option>
+          <option value="moov">📱 Moov Money</option>
+          <option value="wave">💙 Wave</option>
+          <option value="card">💳 Carte bancaire (Stripe)</option>
+        </select>
+      </div>
+      <div class="form-group"><label class="form-label">Numéro de téléphone</label><input class="form-input" type="tel" placeholder="+229 XX XX XX XX"></div>
+      <button class="btn btn-primary btn-w" onclick="handlePay()"><span id="payTxt">Payer maintenant</span></button>
+      <p style="text-align:center;font-size:.73rem;color:var(--gray-400);margin-top:.65rem">🔒 Paiement sécurisé via FedaPay · Annulable à tout moment</p>
+    </div>
+  </div>
+</div>
+
+<!-- MODAL PDF -->
+<div class="modal-ov" id="pdfModal" onclick="if(event.target===this)closeModal('pdfModal')">
+  <div class="modal">
+    <div class="modal-hd"><div class="modal-title">📄 Épreuve officielle</div><button class="modal-x" onclick="closeModal('pdfModal')">×</button></div>
+    <div class="modal-body">
+      <div style="background:var(--gray-100);border-radius:10px;padding:1.75rem;text-align:center;margin-bottom:1rem">
+        <div style="font-size:2.8rem;margin-bottom:.4rem">📄</div>
+        <div style="font-weight:700;margin-bottom:.2rem">BEPC 2023 — Mathématiques</div>
+        <div style="font-size:.8rem;color:var(--gray-400)">République du Bénin · Session normale · 3 heures</div>
+      </div>
+      <div style="background:var(--terra-bg);border-radius:9px;padding:.75rem;margin-bottom:1rem;font-size:.82rem;color:var(--terra);display:flex;gap:.5rem;align-items:flex-start">
+        <span>🔒</span><span>Le téléchargement PDF est réservé aux membres Premium. Passe à Premium pour accéder à toutes les épreuves !</span>
+      </div>
+      <div style="display:flex;gap:.65rem">
+        <button class="btn btn-primary" style="flex:1;justify-content:center" onclick="closeModal('pdfModal');openModal('premiumModal')">⭐ Débloquer Premium</button>
+        <button class="btn btn-outline" onclick="closeModal('pdfModal')">Fermer</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- FOOTER -->
+<footer class="footer">
+  <div class="footer-inner">
+    <div class="footer-grid">
+      <div>
+        <div class="footer-logo">Edu<span>Bénin</span></div>
+        <p class="footer-desc">La première plateforme éducative dédiée aux élèves béninois. Programme MEMP · 6ème à Terminale.</p>
+        <div class="flag"><div class="flag-strip"><div class="flag-green"></div><div class="flag-right"><div class="flag-yellow"></div><div class="flag-red"></div></div></div><span style="font-size:.75rem">Made with ❤️ in Bénin</span></div>
+      </div>
+      <div><div class="footer-col-title">Apprendre</div><ul class="footer-links"><li><a href="#">Cours de Mathématiques</a></li><li><a href="#">Cours de Français</a></li><li><a href="#">SVT & Sciences</a></li><li><a href="#">Préparation BEPC</a></li><li><a href="#">Préparation BAC</a></li><li><a href="#">Parcours de révision</a></li></ul></div>
+      <div><div class="footer-col-title">EduBénin</div><ul class="footer-links"><li><a href="#">À propos</a></li><li><a href="#">Pour les établissements</a></li><li><a href="#">Devenir tuteur</a></li><li><a href="#">Blog pédagogique</a></li><li><a href="#">Contact</a></li></ul></div>
+      <div><div class="footer-col-title">Aide & Légal</div><ul class="footer-links"><li><a href="#">Centre d'aide</a></li><li><a href="#">FAQ</a></li><li><a href="#">Conditions d'utilisation</a></li><li><a href="#">Confidentialité</a></li><li><a href="#">Accessibilité</a></li></ul></div>
+    </div>
+    <div class="footer-bottom"><span>© 2025 EduBénin · Tous droits réservés</span><span>Programme conforme au MEMP — République du Bénin</span></div>
+  </div>
+</footer>
+
+<script>
+const COURSES=[
+  {id:1,title:"Le Théorème de Pythagore",subject:"Mathématiques",level:"3ème",cycle:"college",emoji:"📐",bg:"#e8f5ee",tag:"tg",teacher:"Prof. Gbènou",tc:"#008751",ch:5,dur:"45 min",locked:false},
+  {id:2,title:"La Photosynthèse",subject:"SVT",level:"4ème",cycle:"college",emoji:"🌿",bg:"#edfaf3",tag:"tg",teacher:"Prof. Agossou",tc:"#059669",ch:4,dur:"40 min",locked:false},
+  {id:3,title:"Mouvements de Libération en Afrique",subject:"Histoire-Géo",level:"3ème",cycle:"college",emoji:"🌍",bg:"#fdeee7",tag:"tt",teacher:"Prof. Kinnou",tc:"#c0562b",ch:6,dur:"55 min",locked:false},
+  {id:4,title:"Fonctions du Second Degré",subject:"Mathématiques",level:"Terminale C",cycle:"lycee",emoji:"📈",bg:"#e8f5ee",tag:"tg",teacher:"Prof. Dossou",tc:"#008751",ch:7,dur:"90 min",locked:true},
+  {id:5,title:"La Poésie Africaine Contemporaine",subject:"Français",level:"1ère",cycle:"lycee",emoji:"📝",bg:"#fffbe6",tag:"to",teacher:"Prof. Houinsou",tc:"#b45309",ch:4,dur:"50 min",locked:true},
+  {id:6,title:"Réactions Acide-Base",subject:"Physique-Chimie",level:"Terminale C",cycle:"lycee",emoji:"⚗️",bg:"#ede8fb",tag:"ti",teacher:"Prof. Bossou",tc:"#7c3aed",ch:6,dur:"75 min",locked:true},
+  {id:7,title:"L'Impérialisme Colonial en Afrique",subject:"Histoire-Géo",level:"2nde",cycle:"lycee",emoji:"🗺️",bg:"#fdeee7",tag:"tt",teacher:"Prof. Kinnou",tc:"#c0562b",ch:5,dur:"60 min",locked:true},
+  {id:8,title:"L'Inégalité du Triangle",subject:"Mathématiques",level:"5ème",cycle:"college",emoji:"📐",bg:"#e8f5ee",tag:"tg",teacher:"Prof. Gbènou",tc:"#008751",ch:3,dur:"35 min",locked:false},
+  {id:9,title:"Respiration et Énergie Cellulaire",subject:"SVT",level:"Terminale D",cycle:"lycee",emoji:"🧬",bg:"#edfaf3",tag:"tg",teacher:"Prof. Agossou",tc:"#059669",ch:5,dur:"80 min",locked:true},
+  {id:10,title:"La Philosophie Africaine",subject:"Philosophie",level:"Terminale A",cycle:"lycee",emoji:"🧠",bg:"#fffbe6",tag:"to",teacher:"Prof. Sossou",tc:"#b45309",ch:8,dur:"120 min",locked:true},
+  {id:11,title:"Daily Life in Benin — English",subject:"Anglais",level:"3ème",cycle:"college",emoji:"🗣️",bg:"#dbeffe",tag:"ti",teacher:"Prof. Hounsa",tc:"#0891b2",ch:4,dur:"45 min",locked:false},
+  {id:12,title:"Les Équations du Premier Degré",subject:"Mathématiques",level:"6ème",cycle:"college",emoji:"🔢",bg:"#e8f5ee",tag:"tg",teacher:"Prof. Gbènou",tc:"#008751",ch:3,dur:"30 min",locked:false},
+];
+const EXERCISES=[
+  {title:"Pythagore — Calcul de l'hypoténuse",subject:"Maths",level:"3ème",diff:"medium",prev:"Dans un triangle rectangle, AB = 6 cm, BC = 8 cm. Calculez AC.",q:5,t:"15 min"},
+  {title:"Accord du participe passé",subject:"Français",level:"4ème",diff:"easy",prev:"Choisissez la bonne orthographe du participe passé dans chaque phrase.",q:8,t:"10 min"},
+  {title:"La Photosynthèse — Bilan",subject:"SVT",level:"4ème",diff:"easy",prev:"Parmi ces propositions, lesquelles décrivent correctement la photosynthèse ?",q:6,t:"12 min"},
+  {title:"Équations du 2nd degré",subject:"Maths",level:"Terminale",diff:"hard",prev:"Résolvez dans ℝ : 2x² - 5x + 3 = 0, puis interprétez graphiquement.",q:4,t:"25 min"},
+  {title:"La décolonisation africaine",subject:"Histoire-Géo",level:"3ème",diff:"medium",prev:"Associez chaque pays africain à la date de son indépendance.",q:10,t:"20 min"},
+  {title:"Réactions acide-base",subject:"Physique-Chimie",level:"Terminale",diff:"hard",prev:"Calculez le pH d'une solution d'acide chlorhydrique de concentration 0,01 mol/L.",q:5,t:"30 min"},
+];
+const EXAMS={
+  bepc:[{y:2023,s:"Mathématiques",d:"3h"},{y:2023,s:"Français",d:"3h"},{y:2023,s:"SVT",d:"2h"},{y:2023,s:"Histoire-Géo",d:"2h"},{y:2022,s:"Mathématiques",d:"3h"},{y:2022,s:"Physique-Chimie",d:"2h"},{y:2022,s:"Anglais",d:"2h"},{y:2021,s:"Mathématiques",d:"3h"}],
+  "bac-a":[{y:2023,s:"Philosophie",d:"4h"},{y:2023,s:"Français",d:"4h"},{y:2023,s:"Histoire-Géo",d:"4h"},{y:2022,s:"Philosophie",d:"4h"}],
+  "bac-b":[{y:2023,s:"Économie",d:"4h"},{y:2023,s:"Mathématiques",d:"4h"},{y:2022,s:"Économie",d:"4h"}],
+  "bac-c":[{y:2023,s:"Mathématiques",d:"4h"},{y:2023,s:"Physique-Chimie",d:"4h"},{y:2023,s:"SVT",d:"4h"},{y:2022,s:"Mathématiques",d:"4h"},{y:2022,s:"Physique-Chimie",d:"4h"}],
+  "bac-d":[{y:2023,s:"SVT",d:"4h"},{y:2023,s:"Mathématiques",d:"4h"},{y:2022,s:"SVT",d:"4h"}],
+  "bac-g":[{y:2023,s:"Économie d'entreprise",d:"4h"},{y:2023,s:"Comptabilité",d:"4h"},{y:2022,s:"Économie d'entreprise",d:"4h"}],
+};
+const VIDEOS=[
+  {title:"Introduction au Théorème de Pythagore",subject:"Maths",level:"3ème",dur:"8:24",emoji:"📐",bg:"#e8f5ee",teacher:"Prof. Gbènou"},
+  {title:"La Photosynthèse expliquée simplement",subject:"SVT",level:"4ème",dur:"11:05",emoji:"🌿",bg:"#edfaf3",teacher:"Prof. Agossou"},
+  {title:"Correction BEPC 2022 — Mathématiques",subject:"Maths",level:"3ème",dur:"14:30",emoji:"📋",bg:"#fffbe6",teacher:"Prof. Dossou"},
+  {title:"Comment conjuguer le subjonctif",subject:"Français",level:"5ème",dur:"7:15",emoji:"📝",bg:"#fdeee7",teacher:"Prof. Houinsou"},
+  {title:"Les forces et le principe d'inertie",subject:"Physique",level:"2nde",dur:"9:45",emoji:"⚗️",bg:"#ede8fb",teacher:"Prof. Bossou"},
+  {title:"Indépendances africaines 1960",subject:"Histoire",level:"3ème",dur:"12:20",emoji:"🌍",bg:"#fdeee7",teacher:"Prof. Kinnou"},
+];
+const BOTS={pythagore:"📐 Le théorème de Pythagore :\n\nDans un triangle rectangle, AC² = AB² + BC²\n\nExemple : AB = 3 cm, BC = 4 cm\nAC² = 9 + 16 = 25, donc AC = 5 cm\n\nTu veux un autre exemple ?",dissertation:"📝 Pour réussir une dissertation :\n\n1. Introduction : accroche + problématique + annonce du plan\n2. Développement en 2 ou 3 parties (thèse / antithèse / synthèse)\n3. Conclusion : bilan + ouverture\n\nTu veux que je t'explique chaque partie en détail ?",photosynthèse:"🌿 La photosynthèse :\n\nBilan : 6 CO₂ + 6 H₂O + lumière → C₆H₁₂O₆ + 6 O₂\n\nLes plantes utilisent la lumière solaire pour transformer le CO₂ de l'air et l'eau du sol en glucose et en oxygène.\n\nC'est pourquoi les forêts du Bénin sont si importantes pour notre air !",bepc:"📋 Pour préparer le BEPC :\n\n1. Identifie tes matières faibles en premier\n2. Fais les épreuves officielles des 3 dernières années\n3. Révise 1h30 par jour minimum à partir de janvier\n4. Utilise les parcours de révision EduBénin\n\nQuelle matière veux-tu préparer en priorité ?",default:"🤔 Bonne question ! Pour t'aider au mieux, précise-moi :\n• La matière (Maths, SVT, Français...)\n• Ton niveau (6ème, 3ème, Terminale...)\n• Ce que tu n'as pas compris\n\nJe suis là pour t'expliquer n'importe quel chapitre du programme béninois 📚"};
+
+function renderCourses(id,list){
+  const el=document.getElementById(id);if(!el)return;
+  el.innerHTML=list.map(c=>`
+    <div class="course-card" onclick="openCourse(${c.id})">
+      <div class="course-thumb" style="background:${c.bg}">
+        <div class="ct-pattern" style="color:var(--green)"></div>
+        <span style="font-size:3.2rem;position:relative;z-index:1">${c.emoji}</span>
+      </div>
+      <div class="course-body">
+        <div class="tags">
+          <span class="tag ${c.tag}">${c.subject}</span>
+          <span class="tag to">${c.level}</span>
+          ${c.locked?'<span class="tag tgray">🔒 Premium</span>':'<span class="tag tg">Gratuit</span>'}
+        </div>
+        <div class="course-title">${c.title}</div>
+        <div class="course-meta"><span>📚 ${c.ch} chapitres</span><span>⏱️ ${c.dur}</span></div>
+      </div>
+      <div class="course-footer">
+        <div class="teacher-row"><div class="avatar" style="background:${c.tc}">${c.teacher.split(' ').map(w=>w[0]).join('').slice(0,2)}</div>${c.teacher}</div>
+        ${c.locked?'<span style="font-size:14px;color:var(--gray-400)">🔒</span>':'<button class="btn btn-primary btn-sm">Commencer</button>'}
+      </div>
+    </div>`).join('');
+}
+function renderExercises(list){
+  const el=document.getElementById('exercicesGrid');if(!el)return;
+  el.innerHTML=(list||EXERCISES).map(e=>`
+    <div class="ex-card">
+      <div class="ex-header"><div class="ex-title">${e.title}</div><span class="diff df-${e.diff}">${e.diff==='easy'?'Facile':e.diff==='medium'?'Moyen':'Difficile'}</span></div>
+      <div class="ex-prev">${e.prev}</div>
+      <div class="ex-footer"><span class="ex-info">📝 ${e.q} questions · ⏱️ ${e.t}</span><button class="btn btn-primary btn-sm" onclick="openModal('authModal')">Commencer</button></div>
+    </div>`).join('');
+}
+function renderExams(type){
+  const el=document.getElementById('examsGrid');if(!el)return;
+  const data=EXAMS[type]||EXAMS.bepc;const isBepc=type==='bepc';
+  el.innerHTML=data.map(e=>`
+    <div class="exam-card" onclick="openModal('pdfModal')">
+      <div class="exam-type ${isBepc?'et-bepc':'et-bac'}">${isBepc?'BEPC':'BAC'}</div>
+      <div class="exam-title">${e.s} — ${e.y}</div>
+      <div class="exam-meta">📅 Session ${e.y} · ⏱️ ${e.d} · Corrigé inclus</div>
+      <div style="display:flex;gap:.5rem"><button class="btn btn-primary btn-sm">📄 Voir</button><button class="btn btn-outline btn-sm">⬇️ PDF</button></div>
+    </div>`).join('');
+}
+function renderVideos(){
+  const el=document.getElementById('videosGrid');if(!el)return;
+  el.innerHTML=VIDEOS.map(v=>`
+    <div class="vid-card" onclick="openModal('authModal')">
+      <div class="vid-thumb" style="background:${v.bg}">
+        <div class="vid-bg">${v.emoji}</div>
+        <div class="play-btn">▶</div>
+        <div class="vid-dur">${v.dur}</div>
+      </div>
+      <div class="vid-body">
+        <div class="tags" style="margin-bottom:.35rem"><span class="tag tg">${v.subject}</span><span class="tag to">${v.level}</span></div>
+        <div class="vid-title">${v.title}</div>
+        <div class="vid-meta">${v.teacher}</div>
+      </div>
+    </div>`).join('');
+}
+
+let currentSubjFilter='all',currentLvlFilter='all';
+function switchTab(btn,filter,isCatalogue){
+  btn.closest('.tabs').querySelectorAll('.tab').forEach(t=>t.classList.remove('active'));
+  btn.classList.add('active');
+  if(isCatalogue){currentSubjFilter=filter;applyCatalogueFilter();}
+  else renderExams(filter);
+}
+function filterLvl(btn,lvl){
+  btn.parentNode.querySelectorAll('.fbtn').forEach(b=>b.classList.remove('active'));
+  btn.classList.add('active');currentLvlFilter=lvl;applyCatalogueFilter();
+}
+function filterExo(btn,diff){
+  btn.parentNode.querySelectorAll('.fbtn').forEach(b=>b.classList.remove('active'));
+  btn.classList.add('active');
+  const filtered=diff==='all'?EXERCISES:EXERCISES.filter(e=>e.diff===diff);
+  renderExercises(filtered);
+}
+function applyCatalogueFilter(){
+  let list=COURSES;
+  const sm={math:'Mathématiques',fr:'Français',svt:'SVT',pc:'Physique-Chimie',hg:'Histoire-Géo',en:'Anglais',philo:'Philosophie'};
+  if(currentSubjFilter!=='all')list=list.filter(c=>c.subject===sm[currentSubjFilter]);
+  if(currentLvlFilter==='college')list=list.filter(c=>c.cycle==='college');
+  else if(currentLvlFilter==='lycee')list=list.filter(c=>c.cycle==='lycee');
+  else if(currentLvlFilter==='bepc')list=list.filter(c=>c.level==='3ème');
+  else if(currentLvlFilter==='bac')list=list.filter(c=>['Terminale A','Terminale B','Terminale C','Terminale D','Terminale G','1ère','2nde'].includes(c.level));
+  renderCourses('catalogueGrid',list);
+}
+
+let currentTab='home';
+function showTab(tab){
+  document.querySelectorAll('.tab-content').forEach(t=>t.classList.remove('active'));
+  document.querySelectorAll('.nav a').forEach(a=>a.classList.remove('active'));
+  const el=document.getElementById('tab-'+tab);
+  if(!el){document.getElementById('tab-home').classList.add('active');return;}
+  el.classList.add('active');currentTab=tab;
+  const nav=document.getElementById('nav-'+tab);if(nav)nav.classList.add('active');
+  window.scrollTo({top:0,behavior:'smooth'});
+  if(tab==='catalogue')applyCatalogueFilter();
+  else if(tab==='exercices')renderExercises();
+  else if(tab==='examens')renderExams('bepc');
+  else if(tab==='videos')renderVideos();
+}
+function goSubject(s){showTab('catalogue');setTimeout(()=>{currentSubjFilter=Object.keys({math:'Mathématiques',fr:'Français',svt:'SVT',pc:'Physique-Chimie',hg:'Histoire-Géo',en:'Anglais',philo:'Philosophie'}).find(k=>({math:'Mathématiques',fr:'Français',svt:'SVT',pc:'Physique-Chimie',hg:'Histoire-Géo',en:'Anglais',philo:'Philosophie'})[k]===s)||'all';applyCatalogueFilter();},100);}
+function goLevel(l){showTab('catalogue');setTimeout(()=>{renderCourses('catalogueGrid',COURSES.filter(c=>c.level===l));},100);}
+function openCourse(id){const c=COURSES.find(x=>x.id===id);if(c&&c.locked)openModal('premiumModal');else alert('📚 Cours ouvert ! Dans la version Next.js complète, ceci affiche le cours avec ses chapitres, contenu et exercices intégrés.');}
+
+// SEARCH
+function handleSearch(){const q=document.getElementById('searchInput').value.trim();if(q)searchFor(q);}
+function searchFor(q){document.getElementById('searchInput').value=q;showTab('catalogue');setTimeout(()=>{const f=COURSES.filter(c=>c.title.toLowerCase().includes(q.toLowerCase())||c.subject.toLowerCase().includes(q.toLowerCase())||c.level.toLowerCase().includes(q.toLowerCase()));renderCourses('catalogueGrid',f.length?f:COURSES);},100);}
+
+// SIMULATEUR + TIMER
+let simTimerInt=null,simSecs=180,simDone=false;
+function startSimTimer(){
+  clearInterval(simTimerInt);simSecs=180;
+  simTimerInt=setInterval(()=>{
+    simSecs--;const m=Math.floor(simSecs/60),s=simSecs%60;
+    const el=document.getElementById('simTimer');if(el)el.textContent=(m<10?'0':'')+m+':'+(s<10?'0':'')+s;
+    if(simSecs<=0){clearInterval(simTimerInt);if(el)el.textContent='00:00';}
+  },1000);
+}
+function checkSim(btn,correct){
+  if(simDone)return;simDone=true;clearInterval(simTimerInt);
+  document.querySelectorAll('.sim-opt').forEach(o=>o.disabled=true);
+  const exp=document.getElementById('simExp');
+  if(correct){btn.classList.add('correct');exp.className='sim-exp exp-ok show';exp.innerHTML='✅ <strong>Bonne réponse !</strong> Par le théorème de Pythagore : AC² = AB² + BC² = 3² + 4² = 9 + 16 = 25, donc AC = √25 = <strong>5 cm</strong>. +15 XP !';}
+  else{btn.classList.add('wrong');exp.className='sim-exp exp-no show';exp.innerHTML='❌ <strong>Pas tout à fait.</strong> Applique Pythagore : AC² = AB² + BC² = 3² + 4² = 9 + 16 = 25, donc AC = <strong>5 cm</strong> (réponse C). Souviens-toi : hypoténuse² = côté₁² + côté₂².';}
+}
+
+// CHAT
+function toggleChat(){document.getElementById('chatWindow').classList.toggle('open');}
+function sendChat(preset){
+  const inp=document.getElementById('chatInp');
+  const msg=preset||inp.value.trim();if(!msg)return;
+  inp.value='';
+  const msgs=document.getElementById('chatMsgs');
+  msgs.innerHTML+=`<div class="cmsg user">${msg}</div>`;
+  const typing=document.createElement('div');typing.className='cmsg bot';typing.innerHTML='<em style="opacity:.6">Kémi réfléchit...</em>';
+  msgs.appendChild(typing);msgs.scrollTop=msgs.scrollHeight;
+  setTimeout(()=>{
+    const lm=msg.toLowerCase();
+    let r=BOTS.default;
+    if(lm.includes('pyth'))r=BOTS.pythagore;
+    else if(lm.includes('dissert'))r=BOTS.dissertation;
+    else if(lm.includes('photos'))r=BOTS.photosynthèse;
+    else if(lm.includes('bepc')||lm.includes('bac'))r=BOTS.bepc;
+    typing.innerHTML=r.replace(/\n/g,'<br>');
+    msgs.scrollTop=msgs.scrollHeight;
+  },1100);
+}
+
+// MODALS
+function openModal(id){document.getElementById(id).classList.add('open');}
+function closeModal(id){document.getElementById(id).classList.remove('open');}
+function handleLogin(){
+  const btn=document.getElementById('loginTxt');btn.innerHTML='<span class="spin"></span>';
+  setTimeout(()=>{closeModal('authModal');showTab('dashboard');btn.textContent='Se connecter / S\'inscrire';},1500);
+}
+function selectPlan(p){
+  document.getElementById('btnMonthly').style.border=p==='monthly'?'2px solid var(--green)':'1.5px solid var(--gray-200)';
+  document.getElementById('btnMonthly').style.background=p==='monthly'?'var(--green-bg)':'var(--white)';
+  document.getElementById('btnAnnual').style.border=p==='annual'?'2px solid var(--green)':'1.5px solid var(--gray-200)';
+  document.getElementById('btnAnnual').style.background=p==='annual'?'var(--green-bg)':'var(--white)';
+}
+function handlePay(){
+  const btn=document.getElementById('payTxt');btn.innerHTML='<span class="spin"></span>';
+  const m=document.getElementById('payMethod').value;
+  setTimeout(()=>{
+    closeModal('premiumModal');btn.textContent='Payer maintenant';
+    const msgs={mtn:'Un message MTN Mobile Money vous sera envoyé pour confirmer.',moov:'Un message Moov Money vous sera envoyé.',wave:'Ouverture de Wave pour confirmer...',card:'Redirection vers Stripe...'};
+    alert('✅ Paiement initié !\n\n'+msgs[m]+'\n\n(Dans la version complète, FedaPay gère la transaction automatiquement.)');
+  },2000);
+}
+
+// THEME
+function toggleTheme(){
+  const d=document.body.getAttribute('data-theme')==='dark';
+  document.body.setAttribute('data-theme',d?'light':'dark');
+  document.getElementById('themeBtn').textContent=d?'🌙':'☀️';
+}
+function toggleMob(){document.getElementById('mobMenu').classList.toggle('open');}
+
+// SCROLL
+window.addEventListener('scroll',()=>{document.getElementById('scrollTop').classList.toggle('show',window.scrollY>400);});
+
+// INIT
+document.addEventListener('DOMContentLoaded',()=>{
+  renderCourses('featuredCourses',COURSES.slice(0,6));
+  startSimTimer();
+});
+</script>
+</body>
+</html>
